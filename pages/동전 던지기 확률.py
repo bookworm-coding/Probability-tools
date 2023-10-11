@@ -44,5 +44,5 @@ coin()
 chart_data = pd.DataFrame(np.array(l), columns=["앞면", "뒷면"])
 st.line_chart(chart_data)
 
-st.write(number, "번 시행시 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
+st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
 st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", np.longdouble(Fraction(1, 2)), "이다. ")
