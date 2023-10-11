@@ -47,7 +47,7 @@ birthday()
 chart_data = pd.DataFrame(np.array(li), columns=["생일이 같은 쌍이 나올 확률"])
 st.line_chart(chart_data)
 
-st.write(number, "개의 그룹에 ", n, "명의 학생이 있을 때 생일이 같은 학생이 생길 확률은 ", li[-1][0], "이다. ")
+st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
 f = Fraction(1, 1) - Fraction(int(factorial(366)), 366 ** n * int(factorial(366 - n)))
 st.write("이론상 확률은 ", "$1 - { 366! \\over {366}^{%d} (366-%d)!}$" % (n, n),
          # "=", "$%d \\over %d$" % (f.numerator, f.denominator),
