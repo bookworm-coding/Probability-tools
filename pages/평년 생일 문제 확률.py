@@ -7,7 +7,7 @@ from math import factorial
 from collections import Counter
 
 st.set_page_config(
-    page_title="주사위 확률",
+    page_title="평년 생일 문제 확률",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
