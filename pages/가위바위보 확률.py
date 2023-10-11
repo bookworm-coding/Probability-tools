@@ -52,5 +52,5 @@ st.line_chart(chart_data)
 
 st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", l[-1][0], "이고 A와 B가 비긴 확률은 ", l[-1][1], "이고 A가 진 확률은 ",
          l[-1][2], "이다. ")
-st.write("이론상 확률은 모두 ", r"$\frac{1}{3}$", "≈", np.longdouble(Fraction(1, 3)), "이다. ")
+st.write("이론상 확률은 모두 ", r"$\frac{1}{3}$", "≈", float(Fraction(1, 3)), "이다. ")
 
