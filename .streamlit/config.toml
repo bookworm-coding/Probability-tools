@@ -1,8 +1,5 @@
 [client]
 toolbarMode = "minimal"
 
-[server]
-port = 80
-
 [theme]
 base="light"
