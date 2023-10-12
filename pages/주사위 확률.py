@@ -8,9 +8,6 @@ st.set_page_config(
     page_title="주사위 확률",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={
-        'About': '''이 앱은 김강민에 의해 만들어졌습니다. '''
-    }
 )
 
 hide_streamlit_style = """
