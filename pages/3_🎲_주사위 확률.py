@@ -8,6 +8,7 @@ st.set_page_config(
     page_title="주사위 확률",
     layout="wide",
     initial_sidebar_state="expanded",
+    page_icon=":game_die:"
 )
 
 hide_streamlit_style = """

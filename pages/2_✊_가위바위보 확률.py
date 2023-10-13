@@ -8,6 +8,7 @@ st.set_page_config(
     page_title="가위바위보 확률",
     layout="wide",
     initial_sidebar_state="expanded",
+    page_icon=":fist:"
 )
 
 hide_streamlit_style = """

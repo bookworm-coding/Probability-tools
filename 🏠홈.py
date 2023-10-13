@@ -4,9 +4,7 @@ st.set_page_config(
     page_title="확률 도구",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={
-        'About': '''이 앱은 김강민에 의해 만들어졌습니다. '''
-    }
+    page_icon=":house:"
 )
 
 st.title("확률 도구")

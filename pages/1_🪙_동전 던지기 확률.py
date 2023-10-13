@@ -8,6 +8,7 @@ st.set_page_config(
     page_title="동전 던지기 확률",
     layout="wide",
     initial_sidebar_state="expanded",
+    page_icon=":coin:"
 )
 
 hide_streamlit_style = """
