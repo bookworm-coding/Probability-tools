@@ -3,13 +3,9 @@ import pandas as pd
 import numpy as np
 from random import randint
 from fractions import Fraction
+from st_pages import add_page_title
 
-st.set_page_config(
-    page_title="가위바위보 확률",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon=":fist:"
-)
+add_page_title(layout="wide", initial_sidebar_state="expanded",)
 
 hide_streamlit_style = """
             <style>
@@ -18,8 +14,7 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-st.title("가위바위보 확률")
-st.subheader("가위바위보를 2명이 n번 할 때 A가 이길 확률, 비길 확률, 질 확률")
+st.subheader("가위바위보를 2명이 할 때 A가 이길 확률, 비길 확률, 질 확률")
 
 
 def rcp():
