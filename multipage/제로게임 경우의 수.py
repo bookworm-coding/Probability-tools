@@ -38,5 +38,5 @@ def zero():
 st.subheader("제로게임에서 각 숫자를 불렀을 때의 경우의 수")
 n = st.slider("인원수", min_value=1, max_value=50, value=5, step=1, on_change=zero)
 zero()
-st.dataframe(df)
+st.dataframe(df,column_config=st.column_config.ListColumn(width="large"), use_container_width=True)
 st.caption("가로축은 부른 숫자, 세로축은 인원수")
