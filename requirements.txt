@@ -2,3 +2,4 @@ numpy
 pandas
 st_pages
 streamlit
+watchdog

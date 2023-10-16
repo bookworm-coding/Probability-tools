@@ -1,15 +1,14 @@
 import streamlit as st
 from st_pages import Page, Section, show_pages, add_page_title
 
-add_page_title(page_title="확률 도구",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    page_icon=":house:"
-)
+add_page_title(layout="wide", initial_sidebar_state="expanded")
 
 show_pages(
     [
         Page("🏠홈.py", "확률 도구", ":house:"),
+        Section("경우의 수 문제", ":file_folder:"),
+        Page("multipage/제로게임 모든 경우들 열거.py", "제로게임 모든 경우 나열", ""),
+        Page("multipage/제로게임 경우의 수.py", "제로게임 경우의 수", ""),
         Section("단순한 확률 문제", ":file_folder:"),
         Page("multipage/동전 던지기 확률.py", "동전 던지기 확률" ,":coin:"),
         Page("multipage/가위바위보 확률.py", "가위바위보 확률", ":fist:"),
@@ -19,8 +18,7 @@ show_pages(
         Page("multipage/윤년 생일 문제 확률.py", "윤년 생일 문제 확률", ":date:"),
     ]
 )
-
-#st.title("확률 도구")
+st.title("확률 도구")
 st.subheader("다양한 확률 그래프 등을 제공합니다.")
 st.write("Made by 김강민")
 st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability_test)")
