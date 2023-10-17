@@ -33,7 +33,7 @@ def birthday():
 
 
 number = st.slider(label="그룹의 개수", min_value=10, max_value=10000, value=100, step=10, on_change=birthday)
-n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=367, value=5, step=1, on_change=birthday)
+n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=366, value=5, step=1, on_change=birthday)
 
 birthday()
 
