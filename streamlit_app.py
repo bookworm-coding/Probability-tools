@@ -5,7 +5,7 @@ add_page_title(layout="wide", initial_sidebar_state="expanded")
 
 show_pages(
     [
-        Page("🏠홈.py", "확률 도구", ":house:"),
+        Page("streamlit_app.py", "확률 도구", ":house:"),
         Section("경우의 수 문제", ":file_folder:"),
         Page("multipage/제로게임 모든 경우들 열거.py", "제로게임 모든 경우 나열", ""),
         Page("multipage/제로게임 경우의 수.py", "제로게임 경우의 수", ""),
