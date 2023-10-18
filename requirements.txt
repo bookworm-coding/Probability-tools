@@ -1,6 +1,6 @@
-numpy
-pandas
-st_pages
-streamlit
-watchdog
-openpyxl
+numpy==1.26.1
+pandas==2.1.1
+st_pages==0.4.1
+streamlit==1.27.2
+watchdog==3.0.0
+openpyxl==3.2.0b1
