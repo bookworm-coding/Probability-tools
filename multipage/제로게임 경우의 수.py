@@ -6,6 +6,7 @@ add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
 hide_streamlit_style = """
             <style>
+            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             </style>
             """

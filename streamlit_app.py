@@ -3,6 +3,13 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 add_page_title(layout="wide", initial_sidebar_state="expanded")
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 show_pages(
     [
         Page("streamlit_app.py", "확률 도구", ":house:"),
