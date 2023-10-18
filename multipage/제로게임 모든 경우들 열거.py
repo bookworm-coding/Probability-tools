@@ -40,7 +40,7 @@ class Zero(pd.DataFrame):
 
 
 n = st.slider("인원수", min_value=1, max_value=10, value=2, step=1)
-with st.spinner("로딩중..."):
+with st.spinner("로딩 중..."):
     z = Zero(n)
     if n > 5:
         st.info("5보다 큰 경우에는 온라인으로 보는 것이 지원되지 않고, 엑셀 파일 저장만 지원합니다. ")
