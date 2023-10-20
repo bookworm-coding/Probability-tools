@@ -26,5 +26,5 @@ show_pages(
     ]
 )
 st.subheader("다양한 확률 그래프 등을 제공합니다.")
-st.write("Made by 김강민")
-st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability_test)")
+st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability-tools)")
+st.write("[데스크탑 버전 Github 주소](https://github.com/bookworm-coding/Probability-tools-desktop)")
