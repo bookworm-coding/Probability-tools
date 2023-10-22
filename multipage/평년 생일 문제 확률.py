@@ -6,6 +6,7 @@ from fractions import Fraction
 from math import factorial
 from collections import Counter
 from st_pages import add_page_title
+import plotly.express as px
 
 add_page_title(layout="wide", initial_sidebar_state="expanded",)
 
@@ -38,11 +39,16 @@ n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=365, value=5
 
 birthday()
 
+f = Fraction(1, 1) - Fraction(int(factorial(365)), 365 ** n * int(factorial(365 - n)))
+
 chart_data = pd.DataFrame(np.array(li), columns=["생일이 같은 쌍이 나올 확률"])
-st.line_chart(chart_data)
+fig = px.line(chart_data)
+fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
+fig.add_hline(y=float(f), line_dash="dot")
+fig.update_traces(showlegend=False)
+st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
-f = Fraction(1, 1) - Fraction(int(factorial(365)), 365 ** n * int(factorial(365 - n)))
 st.write("이론상 확률은 ", "$1 - { 365! \\over {365}^{%d} (365-%d)!}$" % (n, n),
          # "=", "$%d \\over %d$" % (f.numerator, f.denominator),
          "≈", np.longdouble(f), "이다. ")

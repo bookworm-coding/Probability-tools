@@ -4,6 +4,7 @@ import numpy as np
 from random import randint
 from fractions import Fraction
 from st_pages import add_page_title
+import plotly.express as px
 
 add_page_title(layout="wide", initial_sidebar_state="expanded",)
 
@@ -35,8 +36,13 @@ number = st.slider(label="동전 던지기 횟수", min_value=10, max_value=1000
 l = []
 coin()
 
+f = Fraction(1,2)
+
 chart_data = pd.DataFrame(np.array(l), columns=["앞면", "뒷면"])
-st.line_chart(chart_data)
+fig = px.line(chart_data)
+fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
+fig.add_hline(y=float(f), line_dash="dot")
+st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
-st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", float(Fraction(1, 2)), "이다. ")
+st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", np.longdouble(f), "이다. ")

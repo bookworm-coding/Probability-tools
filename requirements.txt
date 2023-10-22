@@ -3,3 +3,4 @@ st-pages==0.4.1
 streamlit
 pandas
 numpy
+plotly
