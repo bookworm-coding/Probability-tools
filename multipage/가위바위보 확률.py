@@ -48,6 +48,7 @@ chart_data = pd.DataFrame(np.array(l), columns=["이김", "비김", "짐"])
 fig = px.line(chart_data)
 fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
 fig.add_hline(y=float(f), line_dash="dot")
+fig.update_layout(margin=dict(l=0,r=0,b=0,t=0))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", l[-1][0], "이고 A와 B가 비긴 확률은 ", l[-1][1], "이고 A가 진 확률은 ",

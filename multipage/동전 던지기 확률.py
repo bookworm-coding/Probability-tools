@@ -42,6 +42,7 @@ chart_data = pd.DataFrame(np.array(l), columns=["앞면", "뒷면"])
 fig = px.line(chart_data)
 fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
 fig.add_hline(y=float(f), line_dash="dot")
+fig.update_layout(margin=dict(l=0,r=0,b=0,t=0))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
