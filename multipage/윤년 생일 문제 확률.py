@@ -43,7 +43,7 @@ f = Fraction(1, 1) - Fraction(int(factorial(366)), 366 ** n * int(factorial(366 
 
 chart_data = pd.DataFrame(np.array(li), columns=["생일이 같은 쌍이 나올 확률"])
 fig = px.line(chart_data)
-fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
+fig.update_layout(xaxis_title=None, yaxis_title=None, legend_title=None)
 fig.add_hline(y=float(f), line_dash="dot")
 fig.update_traces(showlegend=False)
 fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))

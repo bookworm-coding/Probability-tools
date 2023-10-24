@@ -50,7 +50,7 @@ f = Fraction(1, 6)
 
 chart_data = pd.DataFrame(np.array(l), columns=[1, 2, 3, 4, 5, 6])
 fig = px.line(chart_data)
-fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
+fig.update_layout(xaxis_title=None, yaxis_title=None, legend_title=None)
 fig.add_hline(y=float(f), line_dash="dot")
 fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
 fig.update_layout(legend=dict(
