@@ -6,7 +6,7 @@ from fractions import Fraction
 from st_pages import add_page_title
 import plotly.express as px
 
-add_page_title(layout="wide", initial_sidebar_state="expanded",)
+add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
 hide_streamlit_style = """
             <style>
@@ -46,13 +46,19 @@ number = st.slider(label="주사위 던지기 횟수", min_value=10, max_value=1
 l = []
 dice()
 
-f = Fraction(1,6)
+f = Fraction(1, 6)
 
 chart_data = pd.DataFrame(np.array(l), columns=[1, 2, 3, 4, 5, 6])
 fig = px.line(chart_data)
 fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
 fig.add_hline(y=float(f), line_dash="dot")
-fig.update_layout(margin=dict(l=0,r=0,b=0,t=0))
+fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.01
+))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", l[-1][0], "이고 ", 2, "가 나올 확률은 ", l[-1][1], "이고 ", 3, "이 나올 확률은 ",

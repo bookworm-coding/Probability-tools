@@ -8,7 +8,7 @@ from collections import Counter
 from st_pages import add_page_title
 import plotly.express as px
 
-add_page_title(layout="wide", initial_sidebar_state="expanded",)
+add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
 hide_streamlit_style = """
             <style>
@@ -46,7 +46,13 @@ fig = px.line(chart_data)
 fig.update_layout(xaxis_title="", yaxis_title="", legend_title="")
 fig.add_hline(y=float(f), line_dash="dot")
 fig.update_traces(showlegend=False)
-fig.update_layout(margin=dict(l=0,r=0,b=0,t=0))
+fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
+fig.update_layout(legend=dict(
+    yanchor="top",
+    y=0.99,
+    xanchor="left",
+    x=0.01
+))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
