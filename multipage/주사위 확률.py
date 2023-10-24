@@ -54,7 +54,7 @@ fig.update_layout(xaxis_title=None, yaxis_title=None, legend_title=None)
 fig.add_hline(y=float(f), line_dash="dot")
 fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
 fig.update_layout(legend=dict(
-    yanchor="bottom",
+    yanchor="middle",
     y=0.01,
     xanchor="left",
     x=0.01,
