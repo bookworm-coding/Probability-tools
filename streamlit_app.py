@@ -3,13 +3,6 @@ from st_pages import Page, Section, show_pages, add_page_title
 
 add_page_title(layout="wide", initial_sidebar_state="expanded")
 
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 show_pages(
     [
         Page("streamlit_app.py", "확률 도구", "🏠"),
@@ -25,6 +18,7 @@ show_pages(
         Page("multipage/윤년 생일 문제 확률.py", "윤년 생일 문제 확률", "📅"),
     ]
 )
+
 st.subheader("다양한 확률 그래프 등을 제공합니다.")
 st.write("[데스크탑 버전 다운로드](https://github.com/bookworm-coding/Probability-tools-desktop/releases)")
 st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability-tools)")
