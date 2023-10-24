@@ -27,7 +27,7 @@ def birthday():
     for i in range(1, number + 1):
         l = []
         for j in range(0, n):
-            l.append(randint(1, 365))
+            l.append(randint(1, 366))
         if Counter(l).most_common()[0][1] != 1:
             c += 1
         li.append([float(Fraction(c, i))])
