@@ -10,7 +10,7 @@ show_pages(
         Page("multipage/제로게임 모든 경우들 열거.py", "제로게임 모든 경우 나열", ""),
         Page("multipage/제로게임 경우의 수.py", "제로게임 경우의 수", ""),
         Section("단순한 확률 문제", "📁"),
-        Page("multipage/동전 던지기 확률.py", "동전 던지기 확률" ,"🪙"),
+        Page("multipage/동전 던지기 확률.py", "동전 던지기 확률", "🪙"),
         Page("multipage/가위바위보 확률.py", "가위바위보 확률", "✊"),
         Page("multipage/주사위 확률.py", "주사위 확률", "🎲"),
         Section("복잡한 확률 문제", "📁"),
