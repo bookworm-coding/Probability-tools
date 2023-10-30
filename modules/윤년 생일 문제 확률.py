@@ -1,5 +1,3 @@
-from collections import Counter
-from random import randint
 import streamlit as st
 from st_pages import add_page_title
 from modules.module import *
