@@ -1,12 +1,9 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
 from random import randint
-from fractions import Fraction
 from st_pages import add_page_title
-import plotly.express as px
+from modules.module import *
 
-add_page_title(layout="wide", initial_sidebar_state="expanded", )
+add_page_title(layout="wide", initial_sidebar_state="expanded")
 
 st.subheader("동전을 던졌을 때 각 눈이 나올 확률")
 
@@ -20,7 +17,7 @@ def coin():
             a += 1
         else:
             b += 1
-        l.append([float(Fraction(a, a + b)), float(Fraction(b, a + b))])
+        l.append([fraction(a, a + b).float, fraction(b, a + b).float])
 
 
 number = st.slider(label="동전 던지기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=coin)
@@ -28,25 +25,10 @@ number = st.slider(label="동전 던지기 횟수", min_value=10, max_value=1000
 l = []
 coin()
 
-f = Fraction(1, 2)
+f = fraction(1, 2)
 
-chart_data = pd.DataFrame(np.array(l), columns=[1, 2, 3, 4, 5, 6])
-fig = px.line(chart_data)
-fig.update_layout(
-    xaxis_title=None,
-    yaxis_title=None,
-    legend_title=None,
-    margin=dict(l=0, r=0, b=0, t=0),
-    legend=dict(
-        yanchor="middle",
-        y=0.01,
-        xanchor="left",
-        x=0.01,
-        orientation="h"
-    )
-)
-fig.add_hline(y=float(f), line_dash="dot")
-st.plotly_chart(fig, use_container_width=True)
+chart_data = df(l, columns=["앞면", "뒷면"])
+st.plotly_chart(line(chart_data, f.float), use_container_width=True)
 
 st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
-st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", np.longdouble(f), "이다. ")
+st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", f.float, "이다. ")
