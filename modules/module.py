@@ -5,6 +5,7 @@ from fractions import Fraction
 import pandas as pd
 import math
 from collections import Counter
+from random import randint
 
 
 def df(p_object, columns, *args, **kwargs):
@@ -51,8 +52,6 @@ class fraction(Fraction):
         if g2 == 1:
             return fraction(t, s * db, _normalize=False)
         return fraction(t // g2, s * (db // g2), _normalize=False)
-
-
 
 
 def factorial(__x: int) -> int:
