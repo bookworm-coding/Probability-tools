@@ -5,13 +5,6 @@ from io import BytesIO
 
 add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
-hide_streamlit_style = """
-            <style>
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 st.subheader("제로게임에서 각 숫자를 불렀을 때 이를 만족하는 모든 경우를 나열")
 
 

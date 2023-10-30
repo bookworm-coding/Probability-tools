@@ -4,13 +4,6 @@ from st_pages import add_page_title
 
 add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
-hide_streamlit_style = """
-            <style>
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 df = None
 
 def zero():

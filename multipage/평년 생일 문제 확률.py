@@ -10,13 +10,6 @@ import plotly.express as px
 
 add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
-hide_streamlit_style = """
-            <style>
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 st.subheader("n명이 있을 때 생일이 같은 쌍이 나올 확률(평년)")
 
 
@@ -42,20 +35,16 @@ f = Fraction(1, 1) - Fraction(int(factorial(365)), 365 ** n * int(factorial(365 
 
 chart_data = pd.DataFrame(np.array(li), columns=["생일이 같은 쌍이 나올 확률"])
 fig = px.line(chart_data)
-fig.update_layout(xaxis_title=None, yaxis_title=None, legend_title=None)
+fig.update_layout(
+    xaxis_title=None,
+    yaxis_title=None,
+    legend_title=None,
+    margin=dict(l=0, r=0, b=0, t=0)
+)
 fig.add_hline(y=float(f), line_dash="dot")
 fig.update_traces(showlegend=False)
-fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
-fig.update_layout(legend=dict(
-    yanchor="middle",
-    y=0.01,
-    xanchor="left",
-    x=0.01,
-    orientation="h"
-))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
 st.write("이론상 확률은 ", "$1 - { 365! \\over {365}^{%d} (365-%d)!}$" % (n, n),
-         # "=", "$%d \\over %d$" % (f.numerator, f.denominator),
          "≈", np.longdouble(f), "이다. ")

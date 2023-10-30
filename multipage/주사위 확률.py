@@ -8,13 +8,6 @@ import plotly.express as px
 
 add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
-hide_streamlit_style = """
-            <style>
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 st.subheader("주사위를 던졌을 때 각 눈이 나올 확률")
 
 
@@ -49,16 +42,20 @@ f = Fraction(1, 6)
 
 chart_data = pd.DataFrame(np.array(l), columns=[1, 2, 3, 4, 5, 6])
 fig = px.line(chart_data)
-fig.update_layout(xaxis_title=None, yaxis_title=None, legend_title=None)
+fig.update_layout(
+    xaxis_title=None,
+    yaxis_title=None,
+    legend_title=None,
+    margin=dict(l=0, r=0, b=0, t=0),
+    legend=dict(
+        yanchor="middle",
+        y=0.01,
+        xanchor="left",
+        x=0.01,
+        orientation="h"
+    )
+)
 fig.add_hline(y=float(f), line_dash="dot")
-fig.update_layout(margin=dict(l=0, r=0, b=0, t=0))
-fig.update_layout(legend=dict(
-    yanchor="middle",
-    y=0.01,
-    xanchor="left",
-    x=0.01,
-    orientation="h"
-))
 st.plotly_chart(fig, use_container_width=True)
 
 st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", l[-1][0], "이고 ", 2, "가 나올 확률은 ", l[-1][1], "이고 ", 3, "이 나올 확률은 ",
