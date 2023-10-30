@@ -5,7 +5,6 @@ from fractions import Fraction
 import pandas as pd
 import math
 from collections import Counter
-import operator
 
 
 def df(p_object, columns, *args, **kwargs):
