@@ -1,6 +1,6 @@
 import streamlit as st
 from st_pages import add_page_title
-from modules.module import *
+import modules.module as m
 
 add_page_title(layout="wide", initial_sidebar_state="expanded")
 
@@ -12,7 +12,7 @@ def dice():
     a = b = c = d = e = f = 0
     l = []
     for i in range(0, number):
-        r = randint(1, 6)
+        r = m.rand1(6)
         if r == 1:
             a += 1
         elif r == 2:
@@ -25,8 +25,8 @@ def dice():
             e += 1
         elif r == 6:
             f += 1
-        l.append([fraction(a, i + 1).float, fraction(b, i + 1).float, fraction(c, i + 1).float,
-                  fraction(d, i + 1).float, fraction(e, i + 1).float, fraction(f, i + 1).float])
+        l.append([m.fraction(a, i + 1).float, m.fraction(b, i + 1).float, m.fraction(c, i + 1).float,
+                  m.fraction(d, i + 1).float, m.fraction(e, i + 1).float, m.fraction(f, i + 1).float])
 
 
 number = st.slider(label="주사위 던지기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=dice)
@@ -34,10 +34,10 @@ number = st.slider(label="주사위 던지기 횟수", min_value=10, max_value=1
 l = []
 dice()
 
-f = fraction(1, 6)
+f = m.fraction(1, 6)
 
-chart_data = df(l, columns=[1, 2, 3, 4, 5, 6])
-st.plotly_chart(line(chart_data, f.float), use_container_width=True)
+chart_data = m.df(l, columns=[1, 2, 3, 4, 5, 6])
+st.plotly_chart(m.line(chart_data, f.float), use_container_width=True)
 
 st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", l[-1][0], "이고 ", 2, "가 나올 확률은 ", l[-1][1], "이고 ", 3, "이 나올 확률은 ",
          l[-1][2], "이고 ", 4, "가 나올 확률은 ", l[-1][3], "이고 ", 5, "가 나올 확률은 ", l[-1][4], "이고 ", 6, "이 나올 확률은 ", l[-1][5],

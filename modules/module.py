@@ -63,3 +63,11 @@ def find_same(iterable):
         return True
     else:
         return False
+
+
+def rand0(n: int):
+    return randint(0, n)
+
+
+def rand1(n: int):
+    return randint(1, n)
