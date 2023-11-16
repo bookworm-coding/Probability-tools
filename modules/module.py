@@ -8,8 +8,8 @@ from collections import Counter
 from random import randint
 
 
-def df(p_object, columns, *args, **kwargs):
-    return pd.DataFrame(np.array(p_object), columns=columns, *args, **kwargs)
+def df(p_object, *args, **kwargs):
+    return pd.DataFrame(np.array(p_object), *args, **kwargs)
 
 
 def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:

@@ -10,7 +10,7 @@ st.subheader("가위바위보를 2명이 할 때 A가 이길 확률, 비길 확�
 def rcp():
     global number, l
     n1 = n2 = n3 = 0
-    for i in range(1, number):
+    for i in range(1, number + 1):
         a, b = m.rand0(2), m.rand0(2)
         if a == b:
             n2 += 1
@@ -32,8 +32,9 @@ rcp()
 
 f = m.fraction(1, 3)
 
-chart_data = m.df(l, columns=["이김", "비김", "짐"])
+chart_data = m.df(l, index=(i + 1 for i in range(number)), columns=["이김", "비김", "짐"])
 st.plotly_chart(m.line(chart_data, f.float), use_container_width=True)
+st.dataframe(chart_data.loc[[i for i in range(int(number / 10), number + 1, int(number / 10))]])
 
 st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", l[-1][0], "이고 A와 B가 비긴 확률은 ", l[-1][1], "이고 A가 진 확률은 ",
          l[-1][2], "이다. ")

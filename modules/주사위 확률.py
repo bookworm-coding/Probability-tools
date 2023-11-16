@@ -11,7 +11,7 @@ def dice():
     global l, number
     a = b = c = d = e = f = 0
     l = []
-    for i in range(0, number):
+    for i in range(1, number + 1):
         r = m.rand1(6)
         if r == 1:
             a += 1
@@ -36,8 +36,9 @@ dice()
 
 f = m.fraction(1, 6)
 
-chart_data = m.df(l, columns=[1, 2, 3, 4, 5, 6])
+chart_data = m.df(l, index=(i + 1 for i in range(number)), columns=[1, 2, 3, 4, 5, 6])
 st.plotly_chart(m.line(chart_data, f.float), use_container_width=True)
+st.dataframe(chart_data.loc[[i for i in range(int(number / 10), number + 1, int(number / 10))]])
 
 st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", l[-1][0], "이고 ", 2, "가 나올 확률은 ", l[-1][1], "이고 ", 3, "이 나올 확률은 ",
          l[-1][2], "이고 ", 4, "가 나올 확률은 ", l[-1][3], "이고 ", 5, "가 나올 확률은 ", l[-1][4], "이고 ", 6, "이 나올 확률은 ", l[-1][5],

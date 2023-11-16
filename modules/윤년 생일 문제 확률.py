@@ -27,9 +27,9 @@ birthday()
 
 f = m.fraction(1, 1) - m.fraction(m.factorial(366), 366 ** n * m.factorial(366 - n))
 
-chart_data = m.df(li, columns=["생일이 같은 쌍이 나올 확률"])
+chart_data = m.df(li, index=(i + 1 for i in range(number)), columns=["생일이 같은 쌍이 나올 확률"])
 st.plotly_chart(m.line(chart_data), use_container_width=True)
+st.dataframe(chart_data.loc[[i for i in range(int(number / 10), number + 1, int(number / 10))]])
 
 st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
-st.write("이론상 확률은 ", "$1 - { 366! \\over {366}^{%d} (366-%d)!}$" % (n, n),
-         "≈", f.longdouble, "이다. ")
+st.write("이론상 확률은 ", "$1 - { 366! \\over {366}^{%d} (366-%d)!}$" % (n, n), "≈", f.longdouble, "이다. ")
