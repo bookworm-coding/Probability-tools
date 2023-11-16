@@ -47,11 +47,13 @@ dice()
 
 f = fraction(1, 6)
 c = ["1이 나올 확률", "2가 나올 확률", "3이 나올 확률", "4가 나올 확률", "5가 나올 확률", "6이 나올 확률"]
+c2 = ["1이 나오는 경우의 수", "2가 나오는 경우의 수", "3이 나오는 경우의 수", "4가 나오는 경우의 수", "5가 나오는 경우의 수", "6이 나오는 경우의 수"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
     st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
-    st.dataframe(cut10(chart_data, number))
+    data = cut10(df(to_numerator(l), number, c2), number)
+    st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))
 
     st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", float(l[-1][0]), "이고 ", 2, "가 나올 확률은 ", float(l[-1][1]), "이고 ",
              3, "이 나올 확률은 ", float(l[-1][2]), "이고 ", 4, "가 나올 확률은 ", float(l[-1][3]), "이고 ",
@@ -60,11 +62,5 @@ if mode:
 
 else:
     with st.spinner("로드 중..."):
-        data = cut10(df(to_numerator(l), number, c), number)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("###### 경우의 수 표")
-            st.dataframe(data)
-        with col2:
-            st.write("###### 확률 표")
-            st.dataframe(cut10(df(to_longdouble(l), number, c), number))
+        data = cut10(df(to_numerator(l), number, c2), number)
+        st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))

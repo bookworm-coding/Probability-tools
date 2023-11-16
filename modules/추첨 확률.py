@@ -38,22 +38,18 @@ lottery()
 
 f = fraction(x, x + y)
 c = ["당첨이 나올 확률"]
+c2 = ["당첨이 나오는 경우의 수"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
     st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
-    st.dataframe(cut10(chart_data, number))
+    data = cut10(df(to_numerator(l), number, c2), number)
+    st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))
 
     st.write(number, "번 추첨했을 때 당첨이 나올 확률은 ", float(l[-1][0]), "이다.")
     st.write("이론상 확률은  ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "=", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):
-        data = cut10(df(to_numerator(l), number, c), number)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("###### 경우의 수 표")
-            st.dataframe(data)
-        with col2:
-            st.write("###### 확률 표")
-            st.dataframe(cut10(df(to_longdouble(l), number, c), number))
+        data = cut10(df(to_numerator(l), number, c2), number)
+        st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))

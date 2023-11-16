@@ -51,7 +51,7 @@ def to_numerator(iter1: list[list[Fraction]]) -> list[list[int]]:
     return list(result)
 
 
-def cut10(data: pd.DataFrame, length: int):
+def cut10(data: pd.DataFrame, length: int) -> pd.DataFrame:
     return data.loc[[i for i in range(int(length / 10), length + 1, int(length / 10))]]
 
 

@@ -43,11 +43,13 @@ rcp()
 
 f = fraction(1, 3)
 c = ["이길 확률", "비길 확률", "질 확률"]
+c2 = ["이기는 경우의 수", "비기는 경우의 수", "지는 경우의 수"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
     st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
-    st.dataframe(cut10(chart_data, number))
+    data = cut10(df(to_numerator(l), number, c2), number)
+    st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))
 
     st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", float(l[-1][0]), "이고 A와 B가 비긴 확률은 ", float(l[-1][1]), "이고 A가 진 확률은 ",
              float(l[-1][2]), "이다. ")
@@ -55,11 +57,5 @@ if mode:
 
 else:
     with st.spinner("로드 중..."):
-        data = cut10(df(to_numerator(l), number, c), number)
-        col1, col2 = st.columns(2)
-        with col1:
-            st.write("###### 경우의 수 표")
-            st.dataframe(data)
-        with col2:
-            st.write("###### 확률 표")
-            st.dataframe(cut10(df(to_longdouble(l), number, c), number))
+        data = cut10(df(to_numerator(l), number, c2), number)
+        st.dataframe(pd.concat([data, cut10(df(to_longdouble(l), number, c), number)], axis=1))
