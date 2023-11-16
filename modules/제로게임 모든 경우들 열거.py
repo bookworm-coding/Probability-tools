@@ -18,7 +18,7 @@ class Zero(pd.DataFrame):
         for i in range(2 * self.n + 1):
             self.l.append([])
         self.zero([])
-        super().__init__(data=self.l, columns=(i for i in range(1, len(self.l[self.n*-1-1])+1)))
+        super().__init__(data=self.l, columns=range(1, len(self.l[self.n*-1-1])+1))
 
     def zero(self, a: list):
         if len(a) == self.n:

@@ -51,8 +51,8 @@ if mode:
     data = cut10(df(to_numerator(l), number, c2), number)
     st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
 
-    st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", float(l[-1][0]), "이고 A와 B가 비긴 확률은 ", float(l[-1][1]), "이고 A가 진 확률은 ",
-             float(l[-1][2]), "이다. ")
+    st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", float(l[-1][0]), "이고 A와 B가 비긴 확률은 ", float(l[-1][1]),
+             "이고 A가 진 확률은 ", float(l[-1][2]), "이다. ")
     st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "≈", float(f), "이다. ")
 
 else:
