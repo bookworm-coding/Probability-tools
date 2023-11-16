@@ -25,8 +25,8 @@ def dice():
             e += 1
         elif r == 6:
             f += 1
-        l.append([m.fraction(a, i + 1).float, m.fraction(b, i + 1).float, m.fraction(c, i + 1).float,
-                  m.fraction(d, i + 1).float, m.fraction(e, i + 1).float, m.fraction(f, i + 1).float])
+        l.append([m.fraction(a, i).float, m.fraction(b, i).float, m.fraction(c, i).float,
+                  m.fraction(d, i).float, m.fraction(e, i).float, m.fraction(f, i).float])
 
 
 number = st.slider(label="주사위 던지기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=dice)
