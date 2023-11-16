@@ -42,7 +42,7 @@ l = []
 rcp()
 
 f = fraction(1, 3)
-c = ["이김", "비김", "짐"]
+c = ["이길 확률", "비길 확률", "질 확률"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
@@ -51,7 +51,7 @@ if mode:
 
     st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", float(l[-1][0]), "이고 A와 B가 비긴 확률은 ", float(l[-1][1]), "이고 A가 진 확률은 ",
              float(l[-1][2]), "이다. ")
-    st.write("이론상 확률은 모두 ", r"$\frac{1}{3}$", "≈", float(f), "이다. ")
+    st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "≈", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):

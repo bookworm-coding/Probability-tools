@@ -46,7 +46,7 @@ l = []
 dice()
 
 f = fraction(1, 6)
-c = [1, 2, 3, 4, 5, 6]
+c = ["1이 나올 확률", "2가 나올 확률", "3이 나올 확률", "4가 나올 확률", "5가 나올 확률", "6이 나올 확률"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
@@ -56,7 +56,7 @@ if mode:
     st.write(number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", float(l[-1][0]), "이고 ", 2, "가 나올 확률은 ", float(l[-1][1]), "이고 ",
              3, "이 나올 확률은 ", float(l[-1][2]), "이고 ", 4, "가 나올 확률은 ", float(l[-1][3]), "이고 ",
              5, "가 나올 확률은 ", float(l[-1][4]), "이고 ", 6, "이 나올 확률은 ", float(l[-1][5]), "이다.")
-    st.write("이론상 확률은 모두 ", r"$\frac{1}{6}$", "≈", float(f), "이다. ")
+    st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "≈", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):

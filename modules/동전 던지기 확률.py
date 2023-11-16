@@ -36,7 +36,7 @@ l = []
 coin()
 
 f = fraction(1, 2)
-c = ["앞면", "뒷면"]
+c = ["앞면이 나올 확률", "뒷면이 나올 확률"]
 
 if mode:
     chart_data = df(to_float(l), number, c)
@@ -44,7 +44,7 @@ if mode:
     st.dataframe(cut10(chart_data, number))
 
     st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", float(l[-1][0]), "이고 뒷면이 나올 확률은", float(l[-1][1]), "이다.")
-    st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", float(f), "이다. ")
+    st.write("이론상 확률은 앞면, 뒷면 모두 ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "=", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):

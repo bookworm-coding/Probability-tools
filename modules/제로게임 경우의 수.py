@@ -1,13 +1,13 @@
-import pandas as pd
 import streamlit as st
 from st_pages import add_page_title
+from modules.module import *
 
 add_page_title(layout="wide", initial_sidebar_state="expanded", )
 
-df = None
+data = None
 
 def zero():
-    global n, df
+    global n, data
     result = []
     for i in range(0, n):
         if i == 0:
@@ -25,11 +25,11 @@ def zero():
                     result[i].append(1)
                 else:
                     result[i].append(result[i - 1][j - 2] + result[i - 1][j - 1] + result[i - 1][j])
-    df = pd.DataFrame(result, index=(i for i in range(1, n+1)))
+    data = df(result, n)
 
 
 st.subheader("제로게임에서 각 숫자를 불렀을 때의 경우의 수")
 n = st.slider("인원수", min_value=1, max_value=50, value=5, step=1, on_change=zero)
 zero()
-st.dataframe(df,column_config=st.column_config.ListColumn(width="large"), use_container_width=True)
+st.dataframe(data,column_config=st.column_config.ListColumn(width="large"), use_container_width=True)
 st.caption("가로축은 부른 숫자, 세로축은 인원수")

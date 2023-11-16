@@ -37,7 +37,7 @@ l = []
 lottery()
 
 f = fraction(x, x + y)
-c = ["당첨"]
+c = ["당첨이 나올 확률"]
 
 if mode:
     chart_data = df(to_float(l), number, c)

@@ -8,7 +8,7 @@ from collections import Counter
 from random import randint
 
 
-def df(p_object, length, columns) -> pd.DataFrame:
+def df(p_object, length: int, columns=None) -> pd.DataFrame:
     return pd.DataFrame(np.array(p_object), index=range(1, length + 1), columns=columns)
 
 
@@ -32,7 +32,7 @@ def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:
     return fig
 
 
-def fraction(numerator:int, denominator:int):
+def fraction(numerator: int, denominator: int):
     return Fraction(numerator, denominator, _normalize=False)
 
 
