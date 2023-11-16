@@ -41,11 +41,6 @@ def to_float(iter1: list[list[Fraction]]) -> list[list[float]]:
     return list(result)
 
 
-def to_longdouble(iter1: list[list[Fraction]]) -> list[list[np.longdouble]]:
-    result = map(lambda i: list(map(np.longdouble, i)), iter1)
-    return list(result)
-
-
 def to_numerator(iter1: list[list[Fraction]]) -> list[list[int]]:
     result = map(lambda i: list(map(lambda f: f.numerator, i)), iter1)
     return list(result)
