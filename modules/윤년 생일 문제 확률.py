@@ -48,9 +48,8 @@ if mode:
     data = cut10(df(to_numerator(l), number, c2), number)
     st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
 
-    st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", np.longdouble(l[-1][0]), "이다. ")
-    st.write("이론상 확률은 ", "$1 - { 366! \\over {366}^{%d} (366-%d)!}$" % (n, n),
-             "≈", np.longdouble(f), "이다. ")
+    st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", float(l[-1][0]), "이다. ")
+    st.write("이론상 확률은 ", "$1 - { 366! \\over {366}^{%d} (366-%d)!}$" % (n, n), "≈", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):
