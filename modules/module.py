@@ -8,8 +8,8 @@ from collections import Counter
 from random import randint
 
 
-def df(p_object, *args, **kwargs):
-    return pd.DataFrame(np.array(p_object), *args, **kwargs)
+def df(p_object, length, columns) -> pd.DataFrame:
+    return pd.DataFrame(np.array(p_object), index=range(1, length + 1), columns=columns)
 
 
 def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:
@@ -32,42 +32,43 @@ def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:
     return fig
 
 
-class fraction(Fraction):
-    def __new__(cls, numerator, denominator, *args, **kwargs):
-        cls = super().__new__(cls, numerator=numerator, denominator=denominator, *args, **kwargs)
-        cls.longdouble = np.longdouble(cls)
-        cls.float = float(cls)
-        return cls
+def fraction(numerator:int, denominator:int):
+    return Fraction(numerator, denominator, _normalize=False)
 
-    def __sub__(a, b):
-        """a - b"""
-        na, da = a.numerator, a.denominator
-        nb, db = b.numerator, b.denominator
-        g = math.gcd(da, db)
-        if g == 1:
-            return fraction(na * db - da * nb, da * db, _normalize=False)
-        s = da // g
-        t = na * (db // g) - nb * s
-        g2 = math.gcd(t, g)
-        if g2 == 1:
-            return fraction(t, s * db, _normalize=False)
-        return fraction(t // g2, s * (db // g2), _normalize=False)
+
+def to_float(iter1: list[list[Fraction]]) -> list[list[float]]:
+    result = map(lambda i: list(map(float, i)), iter1)
+    return list(result)
+
+
+def to_longdouble(iter1: list[list[Fraction]]) -> list[list[np.longdouble]]:
+    result = map(lambda i: list(map(np.longdouble, i)), iter1)
+    return list(result)
+
+
+def to_numerator(iter1: list[list[Fraction]]) -> list[list[int]]:
+    result = map(lambda i: list(map(lambda f: f.numerator, i)), iter1)
+    return list(result)
+
+
+def cut10(data: pd.DataFrame, length: int):
+    return data.loc[[i for i in range(int(length / 10), length + 1, int(length / 10))]]
 
 
 def factorial(__x: int) -> int:
     return int(math.factorial(__x))
 
 
-def find_same(iterable):
+def find_same(iterable) -> bool:
     if Counter(iterable).most_common()[0][1] != 1:
         return True
     else:
         return False
 
 
-def rand0(n: int):
+def rand0(n: int) -> int:
     return randint(0, n)
 
 
-def rand1(n: int):
+def rand1(n: int) -> int:
     return randint(1, n)

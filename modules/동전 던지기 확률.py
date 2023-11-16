@@ -1,6 +1,6 @@
 import streamlit as st
 from st_pages import add_page_title
-import modules.module as m
+from modules.module import *
 
 add_page_title(layout="wide", initial_sidebar_state="expanded")
 
@@ -12,23 +12,47 @@ def coin():
     a = b = 0
     l = []
     for i in range(1, number + 1):
-        if m.rand0(1) == 0:
+        if rand0(1) == 0:
             a += 1
         else:
             b += 1
-        l.append([m.fraction(a, a + b).float, m.fraction(b, a + b).float])
+        l.append([fraction(a, a + b), fraction(b, a + b)])
 
 
-number = st.slider(label="동전 던지기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=coin)
+mode: bool = (st.sidebar.radio(
+    "모드를 선택하세요",
+    ["일반모드", "특수모드"],
+    captions=["10부터 10,000번 중 선택한 만큼 테스트하여 그래프와 확률 표로 나타냅니다. 일반적인 상황에서 이용합니다.",
+              "1,000,000번 테스트하여 경우의 수와 확률 표로 나타냅니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
+) == "일반모드")
+
+if mode:
+    number = st.slider(label="동전 던지기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=coin)
+
+else:
+    number = 1000000
 
 l = []
 coin()
 
-f = m.fraction(1, 2)
+f = fraction(1, 2)
+c = ["앞면", "뒷면"]
 
-chart_data = m.df(l, index=(i + 1 for i in range(number)), columns=["앞면", "뒷면"])
-st.plotly_chart(m.line(chart_data, f.float), use_container_width=True)
-st.dataframe(chart_data.loc[[i for i in range(int(number / 10), number + 1, int(number / 10))]])
+if mode:
+    chart_data = df(to_float(l), number, c)
+    st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
+    st.dataframe(cut10(chart_data, number))
 
-st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
-st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", f.float, "이다. ")
+    st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
+    st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", float(f), "이다. ")
+
+else:
+    with st.spinner("로드 중..."):
+        data = cut10(df(to_numerator(l), number, c), number)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("###### 경우의 수 표")
+            st.dataframe(data)
+        with col2:
+            st.write("###### 확률 표")
+            st.dataframe(cut10(df(to_longdouble(l), number, c), number))

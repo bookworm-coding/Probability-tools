@@ -1,6 +1,6 @@
 import streamlit as st
 from st_pages import add_page_title
-import modules.module as m
+from modules.module import *
 
 add_page_title(layout="wide", initial_sidebar_state="expanded")
 
@@ -8,29 +8,55 @@ st.subheader("n명이 있을 때 생일이 같은 쌍이 나올 확률(평년)")
 
 
 def birthday():
-    global li, number, n
+    global l, number, n
     c = 0
-    li = []
+    l = []
     for i in range(1, number + 1):
-        l = []
+        temp = []
         for j in range(0, n):
-            l.append(m.rand1(365))
-        if m.find_same(l):
+            temp.append(rand1(365))
+        if find_same(temp):
             c += 1
-        li.append([m.fraction(c, i).float])
+        l.append([fraction(c, i)])
 
 
-number = st.slider(label="그룹의 개수", min_value=10, max_value=10000, value=100, step=10, on_change=birthday)
+mode: bool = (st.sidebar.radio(
+    "모드를 선택하세요",
+    ["일반모드", "특수모드"],
+    captions=["10부터 10,000번 중 선택한 만큼 테스트하여 그래프와 확률 표로 나타냅니다. 일반적인 상황에서 이용합니다.",
+              "1,000,000번 테스트하여 경우의 수와 확률 표로 나타냅니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
+) == "일반모드")
+
+if mode:
+    number = st.slider(label="그룹의 개수", min_value=10, max_value=10000, value=100, step=10, on_change=birthday)
+
+else:
+    number = 1000000
+
 n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=365, value=5, step=1, on_change=birthday)
 
+l = []
 birthday()
 
-f = m.fraction(1, 1) - m.fraction(m.factorial(365), 365 ** n * m.factorial(365 - n))
+f = fraction(1, 1) - fraction(factorial(365), 365 ** n * factorial(365 - n))
+c = ["생일이 같은 쌍이 나올 확률"]
 
-chart_data = m.df(li, index=(i + 1 for i in range(number)), columns=["생일이 같은 쌍이 나올 확률"])
-st.plotly_chart(m.line(chart_data), use_container_width=True)
-st.dataframe(chart_data.loc[[i for i in range(int(number / 10), number + 1, int(number / 10))]])
+if mode:
+    chart_data = df(to_float(l), number, c)
+    st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
+    st.dataframe(cut10(chart_data, number))
 
-st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", li[-1][0], "이다. ")
-st.write("이론상 확률은 ", "$1 - { 365! \\over {365}^{%d} (365-%d)!}$" % (n, n),
-         "≈", f.longdouble, "이다. ")
+    st.write(number, "개의 그룹에 그룹당 ", n, "명의 사람들이 있을 때 그룹 안에서 생일이 같은 사람이 생길 확률은 ", l[-1][0], "이다. ")
+    st.write("이론상 확률은 ", "$1 - { 365! \\over {365}^{%d} (365-%d)!}$" % (n, n),
+             "≈", np.longdouble(f), "이다. ")
+
+else:
+    with st.spinner("로드 중..."):
+        data = cut10(df(to_numerator(l), number, c), number)
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("###### 경우의 수 표")
+            st.dataframe(data)
+        with col2:
+            st.write("###### 확률 표")
+            st.dataframe(cut10(df(to_longdouble(l), number, c), number))
