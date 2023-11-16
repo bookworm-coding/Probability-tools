@@ -12,7 +12,7 @@ def coin():
     a = b = 0
     l = []
     for i in range(1, number + 1):
-        if rand0(1) == 0:
+        if rand1(2) == 1:
             a += 1
         else:
             b += 1
@@ -43,7 +43,7 @@ if mode:
     st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
     st.dataframe(cut10(chart_data, number))
 
-    st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", l[-1][0], "이고 뒷면이 나올 확률은", l[-1][1], "이다.")
+    st.write(number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", float(l[-1][0]), "이고 뒷면이 나올 확률은", float(l[-1][1]), "이다.")
     st.write("이론상 확률은 앞면, 뒷면 모두 ", r"$\frac{1}{2}$", "=", float(f), "이다. ")
 
 else:
