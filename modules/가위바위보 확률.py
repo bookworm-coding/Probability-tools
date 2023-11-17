@@ -22,7 +22,7 @@ def rcp():
             n1 += 1
         else:
             n3 += 1
-        l.append([Fraction(n1, i), Fraction(n2, i), Fraction(n3, i)])
+        l.append([fraction(n1, i), fraction(n2, i), fraction(n3, i)])
 
 
 mode = m()
@@ -36,7 +36,7 @@ else:
 l = []
 rcp()
 
-f = Fraction(1, 3)
+f = fraction(1, 3)
 c = ["이길 확률", "비길 확률", "질 확률"]
 c2 = ["이기는 경우의 수", "비기는 경우의 수", "지는 경우의 수"]
 

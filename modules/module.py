@@ -8,7 +8,6 @@ import math
 from collections import Counter
 from random import randint
 import streamlit as st
-from typing import Union
 
 
 def df(p_object, length: int, columns: Axes = None) -> pd.DataFrame:
@@ -87,3 +86,7 @@ def m() -> bool:
                             captions=["10부터 10,000번 중 선택한 만큼 테스트하여 그래프와 확률 표로 나타냅니다. 일반적인 상황에서 이용합니다.",
                                       "1,000,000번 테스트하여 경우의 수와 확률 표로 나타냅니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
                             ) == "일반모드"
+
+
+def fraction(numerator=0, denominator=None):
+    return Fraction(numerator, denominator, _normalize=False)
