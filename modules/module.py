@@ -32,10 +32,6 @@ def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:
     return fig
 
 
-def fraction(numerator: int, denominator: int):
-    return Fraction(numerator, denominator, _normalize=False)
-
-
 def to_float(iter1: list[list[Fraction]]) -> list[list[float]]:
     result = map(lambda i: list(map(float, i)), iter1)
     return list(result)
@@ -55,10 +51,7 @@ def factorial(__x: int) -> int:
 
 
 def find_same(iterable) -> bool:
-    if Counter(iterable).most_common()[0][1] != 1:
-        return True
-    else:
-        return False
+    return Counter(iterable).most_common()[0][1] != 1
 
 
 def rand0(n: int) -> int:

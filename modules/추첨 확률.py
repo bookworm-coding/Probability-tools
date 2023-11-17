@@ -14,7 +14,7 @@ def lottery():
     for i in range(1, number + 1):
         if rand1(x + y) <= x:
             a += 1
-        l.append([fraction(a, i)])
+        l.append([Fraction(a, i)])
 
 
 mode: bool = (st.sidebar.radio(
@@ -36,7 +36,7 @@ y = st.slider(label="꽝 개수", min_value=1, max_value=10, value=5, step=1, on
 l = []
 lottery()
 
-f = fraction(x, x + y)
+f = Fraction(x, x + y)
 c = ["당첨이 나올 확률"]
 c2 = ["당첨이 나오는 경우의 수"]
 

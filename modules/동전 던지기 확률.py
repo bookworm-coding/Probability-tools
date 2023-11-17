@@ -16,7 +16,7 @@ def coin():
             a += 1
         else:
             b += 1
-        l.append([fraction(a, a + b), fraction(b, a + b)])
+        l.append([Fraction(a, a + b), Fraction(b, a + b)])
 
 
 mode: bool = (st.sidebar.radio(
@@ -35,7 +35,7 @@ else:
 l = []
 coin()
 
-f = fraction(1, 2)
+f = Fraction(1, 2)
 c = ["앞면이 나올 확률", "뒷면이 나올 확률"]
 c2 = ["앞면이 나오는 경우의 수", "뒷면이 나오는 경우의 수"]
 

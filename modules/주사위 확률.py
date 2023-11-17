@@ -25,8 +25,8 @@ def dice():
             e += 1
         elif r == 6:
             f += 1
-        l.append([fraction(a, i), fraction(b, i), fraction(c, i),
-                  fraction(d, i), fraction(e, i), fraction(f, i)])
+        l.append([Fraction(a, i), Fraction(b, i), Fraction(c, i),
+                  Fraction(d, i), Fraction(e, i), Fraction(f, i)])
 
 
 mode: bool = (st.sidebar.radio(
@@ -45,7 +45,7 @@ else:
 l = []
 dice()
 
-f = fraction(1, 6)
+f = Fraction(1, 6)
 c = ["1이 나올 확률", "2가 나올 확률", "3이 나올 확률", "4가 나올 확률", "5가 나올 확률", "6이 나올 확률"]
 c2 = ["1이 나오는 경우의 수", "2가 나오는 경우의 수", "3이 나오는 경우의 수", "4가 나오는 경우의 수", "5가 나오는 경우의 수", "6이 나오는 경우의 수"]
 

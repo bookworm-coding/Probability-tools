@@ -17,7 +17,7 @@ def birthday():
             temp.append(rand1(365))
         if find_same(temp):
             c += 1
-        l.append([fraction(c, i)])
+        l.append([Fraction(c, i)])
 
 
 mode: bool = (st.sidebar.radio(
@@ -38,7 +38,7 @@ n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=365, value=5
 l = []
 birthday()
 
-f = fraction(1, 1) - fraction(factorial(365), 365 ** n * factorial(365 - n))
+f = Fraction(1, 1) - Fraction(factorial(365), 365 ** n * factorial(365 - n))
 c = ["생일이 같은 쌍이 나올 확률"]
 c2 = ["생일이 같은 쌍이 나오는 경우의 수"]
 
