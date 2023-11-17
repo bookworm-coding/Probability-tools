@@ -1,7 +1,7 @@
-from modules.form import *
+from modules.format import *
 
 
-class RCP(Probability):
+class RPS(Probability):
     f = fraction(1, 3)
 
     def calc(self):
@@ -29,7 +29,7 @@ class RCP(Probability):
         st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (self.f.numerator, self.f.denominator), "≈", float(self.f), "이다. ")
 
 
-RCP(
+RPS(
     header_text = "가위바위보를 2명이 할 때 A가 이길 확률, 비길 확률, 질 확률",
     slider_label_text = "가위바위보 횟수",
     columns1 = ["이길 확률", "비길 확률", "질 확률"],

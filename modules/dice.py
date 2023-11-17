@@ -1,4 +1,4 @@
-from modules.form import *
+from modules.format import *
 
 
 class Dice(Probability):

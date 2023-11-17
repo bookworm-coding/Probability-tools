@@ -7,15 +7,15 @@ show_pages(
     [
         Page("streamlit_app.py", "확률 도구", "🏠"),
         Section("경우의 수 문제", "📁"),
-        Page("modules/제로게임 모든 경우들 열거.py", "제로게임 모든 경우 나열", None),
-        Page("modules/제로게임 경우의 수.py", "제로게임 경우의 수", None),
+        Page("modules/zerogame-list-all-cases.py", "제로게임 모든 경우 나열", None),
+        Page("modules/zerogame-number-of-cases.py", "제로게임 경우의 수", None),
         Section("단순한 확률 문제", "📁"),
-        Page("modules/동전 던지기 확률.py", "동전 던지기 확률", "🪙"),
-        Page("modules/가위바위보 확률.py", "가위바위보 확률", "✊"),
-        Page("modules/주사위 확률.py", "주사위 확률", "🎲"),
-        Page("modules/추첨 확률.py", "추첨 확률", "🗳️"),
+        Page("modules/coin.py", "동전 던지기 확률", "🪙"),
+        Page("modules/rock-paper-scissors.py", "가위바위보 확률", "✊"),
+        Page("modules/dice.py", "주사위 확률", "🎲"),
+        Page("modules/lottery.py", "추첨 확률", "🗳️"),
         Section("복잡한 확률 문제", "📁"),
-        Page("modules/생일 문제 확률.py", "생일 문제 확률", "📅"),
+        Page("modules/birthday.py", "생일 문제 확률", "📅"),
     ]
 )
 
