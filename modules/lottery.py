@@ -23,7 +23,7 @@ class Lottery(Probability):
 
 Lottery(
     header_text="추첨(뽑기, 돌림판 등)할 때 당첨이 나올 확률",
-    slider_label_text="뽑기 횟수",
+    slider_label_text="추첨 횟수",
     columns1=["당첨이 나올 확률"],
     columns2=["당첨이 나오는 경우의 수"],
 ).main()

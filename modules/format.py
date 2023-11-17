@@ -10,10 +10,6 @@ import streamlit as st
 from st_pages import add_page_title
 
 
-def rand0(n: int) -> int:
-    return randint(0, n)
-
-
 def rand1(n: int) -> int:
     return randint(1, n)
 
@@ -90,10 +86,10 @@ class Probability:
         self.calc()
         if self.mode:
             self.chart_and_table()
-            self.write()
         else:
             with st.spinner("로드중..."):
                 self.table()
+        self.write()
 
     def calc(self):
         self.result = []

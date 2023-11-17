@@ -14,6 +14,11 @@ show_pages(
         Page("modules/rock-paper-scissors.py", "가위바위보 확률", "✊"),
         Page("modules/dice.py", "주사위 확률", "🎲"),
         Page("modules/lottery.py", "추첨 확률", "🗳️"),
+        Section("반복된 확률 문제", "📁"),
+        Page("modules/repetitious-coin.py", "반복된 동전 던지기 확률", "🪙"),
+        Page("modules/repetitious-rock-paper-scissors.py", "반복된 가위바위보 확률", "✊"),
+        Page("modules/repetitious-dice.py", "반복된 주사위 확률", "🎲"),
+        Page("modules/repetitious-lottery.py", "반복된 추첨 확률", "🗳️"),
         Section("복잡한 확률 문제", "📁"),
         Page("modules/birthday.py", "생일 문제 확률", "📅"),
     ]

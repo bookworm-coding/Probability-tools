@@ -21,8 +21,7 @@ class Dice(Probability):
                 e += 1
             elif r == 6:
                 f += 1
-            self.result.append([fraction(a, i), fraction(b, i), fraction(c, i),
-                      fraction(d, i), fraction(e, i), fraction(f, i)])
+            self.result.append([fraction(a, i), fraction(b, i), fraction(c, i), fraction(d, i), fraction(e, i), fraction(f, i)])
         return
     
     def write(self):

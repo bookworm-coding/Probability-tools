@@ -12,7 +12,7 @@ class Coin(Probability):
                 a += 1
             else:
                 b += 1
-            self.result.append([fraction(a, a + b), fraction(b, a + b)])
+            self.result.append([fraction(a, i), fraction(b, i)])
         return
 
     def write(self):
@@ -23,7 +23,7 @@ class Coin(Probability):
 
 
 Coin(
-    header_text="동전을 던졌을 때 각 눈이 나올 확률",
+    header_text="동전을 던졌을 때 앞면, 뒷면이 나올 확률",
     slider_label_text="동전 던지기 횟수",
     columns1=["앞면이 나올 확률", "뒷면이 나올 확률"],
     columns2=["앞면이 나오는 경우의 수", "뒷면이 나오는 경우의 수"]
