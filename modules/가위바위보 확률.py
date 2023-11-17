@@ -25,12 +25,7 @@ def rcp():
         l.append([Fraction(n1, i), Fraction(n2, i), Fraction(n3, i)])
 
 
-mode: bool = (st.sidebar.radio(
-    "모드를 선택하세요",
-    ["일반모드", "특수모드"],
-    captions=["10부터 10,000번 중 선택한 만큼 테스트하여 그래프와 확률 표로 나타냅니다. 일반적인 상황에서 이용합니다.",
-              "1,000,000번 테스트하여 경우의 수와 확률 표로 나타냅니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
-) == "일반모드")
+mode = m()
 
 if mode:
     number = st.slider(label="가위바위보 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=rcp)
@@ -46,10 +41,7 @@ c = ["이길 확률", "비길 확률", "질 확률"]
 c2 = ["이기는 경우의 수", "비기는 경우의 수", "지는 경우의 수"]
 
 if mode:
-    chart_data = df(to_float(l), number, c)
-    st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
-    data = cut10(df(to_numerator(l), number, c2), number)
-    st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
+    chart_and_table(l, number, c, c2, f)
 
     st.write("A와 B가 ", number, "번 가위바위보를 했을 때 A가 이긴 확률은 ", float(l[-1][0]), "이고 A와 B가 비긴 확률은 ", float(l[-1][1]),
              "이고 A가 진 확률은 ", float(l[-1][2]), "이다. ")
@@ -57,5 +49,4 @@ if mode:
 
 else:
     with st.spinner("로드 중..."):
-        data = cut10(df(to_numerator(l), number, c2), number)
-        st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
+        table(l, number, c, c2)

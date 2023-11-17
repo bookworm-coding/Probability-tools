@@ -17,12 +17,7 @@ def lottery():
         l.append([Fraction(a, i)])
 
 
-mode: bool = (st.sidebar.radio(
-    "모드를 선택하세요",
-    ["일반모드", "특수모드"],
-    captions=["10부터 10,000번 중 선택한 만큼 테스트하여 그래프와 확률 표로 나타냅니다. 일반적인 상황에서 이용합니다.",
-              "1,000,000번 테스트하여 경우의 수와 확률 표로 나타냅니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
-) == "일반모드")
+mode = m()
 
 if mode:
     number = st.slider(label="뽑기 횟수", min_value=10, max_value=10000, value=100, step=10, on_change=lottery)
@@ -41,15 +36,11 @@ c = ["당첨이 나올 확률"]
 c2 = ["당첨이 나오는 경우의 수"]
 
 if mode:
-    chart_data = df(to_float(l), number, c)
-    st.plotly_chart(line(chart_data, float(f)), use_container_width=True)
-    data = cut10(df(to_numerator(l), number, c2), number)
-    st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
+    chart_and_table(l, number, c, c2, f)
 
     st.write(number, "번 추첨했을 때 당첨이 나올 확률은 ", float(l[-1][0]), "이다.")
     st.write("이론상 확률은  ", "$\\frac{%d}{%d}$" % (f.numerator, f.denominator), "=", float(f), "이다. ")
 
 else:
     with st.spinner("로드 중..."):
-        data = cut10(df(to_numerator(l), number, c2), number)
-        st.dataframe(pd.concat([data, cut10(df(to_float(l), number, c), number)], axis=1))
+        table(l, number, c, c2)
