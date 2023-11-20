@@ -3,7 +3,7 @@ import streamlit as st
 from st_pages import add_page_title
 from io import BytesIO
 
-add_page_title(layout="wide", initial_sidebar_state="expanded", )
+add_page_title(layout="wide", initial_sidebar_state="expanded")
 
 st.subheader("제로게임에서 각 숫자를 불렀을 때 이를 만족하는 모든 경우를 나열")
 
@@ -13,14 +13,15 @@ class Zero(pd.DataFrame):
     n = 0
     l = []
 
-    def __init__(self, n: int):
+    def __init__(self, n: int) -> None:
         self.n = n
         for i in range(2 * self.n + 1):
             self.l.append([])
         self.zero([])
         super().__init__(data=self.l, columns=range(1, len(self.l[self.n*-1-1])+1))
+        return
 
-    def zero(self, a: list):
+    def zero(self, a: list) -> None:
         if len(a) == self.n:
             s = 0
             for i in a:
@@ -30,6 +31,7 @@ class Zero(pd.DataFrame):
             self.zero(a + [0])
             self.zero(a + [1])
             self.zero(a + [2])
+        return
 
 
 n = st.slider("인원수", min_value=1, max_value=10, value=2, step=1)
