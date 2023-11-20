@@ -2,26 +2,24 @@ from modules.format import *
 
 
 class Dice(Probability):
-    f = fraction(1, 6)
+    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
+        super().__init__(header_text, slider_label_text, columns1, columns2)
+        self.f = fraction(1, 6)
         
-    def calc(self) -> None:
-        super().calc()
-        a = b = c = d = e = f = 0
-        for i in range(1, self.number + 1):
-            r = rand1(6)
-            if r == 1:
-                a += 1
-            elif r == 2:
-                b += 1
-            elif r == 3:
-                c += 1
-            elif r == 4:
-                d += 1
-            elif r == 5:
-                e += 1
-            elif r == 6:
-                f += 1
-            self.result.append([fraction(a, i), fraction(b, i), fraction(c, i), fraction(d, i), fraction(e, i), fraction(f, i)])
+    def _calc(self) -> None:
+        r = rand1(6)
+        if r == 1:
+            self.temp[0] += 1
+        elif r == 2:
+            self.temp[1] += 1
+        elif r == 3:
+            self.temp[2] += 1
+        elif r == 4:
+            self.temp[3] += 1
+        elif r == 5:
+            self.temp[4] += 1
+        elif r == 6:
+            self.temp[5] += 1
         return
     
     def write(self) -> None:

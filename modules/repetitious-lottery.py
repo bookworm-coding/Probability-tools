@@ -10,19 +10,15 @@ class RLottery(Probability):
         self.f = fraction(self.x, self.x + self.y) ** self.n
         return
 
-    def calc(self) -> None:
-        super().calc()
-        a = 0
-        for i in range(1, self.number + 1):
-            temp = True
-            for j in range(1, self.n + 1):
-                if not temp:
-                    continue
-                else:
-                    temp = temp and rand1(self.x + self.y) <= self.x
-            if temp:
-                a += 1
-            self.result.append([fraction(a, i)])
+    def _calc(self) -> None:
+        temp = True
+        for j in range(1, self.n + 1):
+            if not temp:
+                continue
+            else:
+                temp = temp and rand1(self.x + self.y) <= self.x
+        if temp:
+            self.temp[0] += 1
         return
 
     def write(self) -> None:

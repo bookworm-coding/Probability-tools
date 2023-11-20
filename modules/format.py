@@ -2,6 +2,8 @@ import math
 from collections import Counter
 from fractions import Fraction
 from random import randint
+from typing import List, Any
+
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -39,6 +41,11 @@ def to_float(iter1: list[list[Fraction]]) -> list[list[float]]:
     return list(result)
 
 
+def to_fraction(iter1: list[int], i: int) -> list[Fraction]:
+    result = map(lambda x: fraction(x, i), iter1)
+    return list(result)
+
+
 def line(chart_data: pd.DataFrame, y: float = None) -> go.Figure:
     fig = px.line(chart_data)
     fig.update_layout(
@@ -64,7 +71,12 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 
 
 class Probability:
+
+    temp: list
+
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
+        self.temp = []
+        self.length = len(columns1)
         add_page_title(layout="wide", initial_sidebar_state="expanded")
         st.subheader(header_text)
         self.mode = st.sidebar.radio("실험 모드를 선택하세요", ["일반 모드", "특수 모드"],
@@ -89,7 +101,15 @@ class Probability:
         return
 
     def calc(self) -> None:
-        self.result = []
+        self.temp = []
+        for i in range(self.length):
+            self.temp.append(0)
+        for i in range(1, self.number + 1):
+            self._calc()
+            self.result.append(to_fraction(self.temp, i))
+        return
+
+    def _calc(self) -> None:
         return
 
     def write(self) -> None:

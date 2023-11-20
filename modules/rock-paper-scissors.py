@@ -2,24 +2,22 @@ from modules.format import *
 
 
 class RPS(Probability):
-    f = fraction(1, 3)
+    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
+        super().__init__(header_text, slider_label_text, columns1, columns2)
+        self.f = fraction(1, 3)
 
-    def calc(self) -> None:
-        super().calc()
-        n1 = n2 = n3 = 0
-        for i in range(1, self.number + 1):
-            a, b = rand1(3), rand1(3)
-            if a == b:
-                n2 += 1
-            elif a == 3 and b == 1:
-                n3 += 1
-            elif a == 1 and b == 3:
-                n1 += 1
-            elif a > b:
-                n1 += 1
-            else:
-                n3 += 1
-            self.result.append([fraction(n1, i), fraction(n2, i), fraction(n3, i)])
+    def _calc(self) -> None:
+        a, b = rand1(3), rand1(3)
+        if a == b:
+            self.temp[1] += 1
+        elif a == 3 and b == 1:
+            self.temp[2] += 1
+        elif a == 1 and b == 3:
+            self.temp[0] += 1
+        elif a > b:
+            self.temp[0] += 1
+        else:
+            self.temp[2] += 1
         return
 
     def write(self) -> None:

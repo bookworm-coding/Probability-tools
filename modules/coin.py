@@ -2,17 +2,15 @@ from modules.format import *
 
 
 class Coin(Probability):
-    f = fraction(1, 2)
+    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
+        super().__init__(header_text, slider_label_text, columns1, columns2)
+        self.f = fraction(1, 2)
 
-    def calc(self) -> None:
-        super().calc()
-        a = b = 0
-        for i in range(1, self.number + 1):
-            if rand1(2) == 1:
-                a += 1
-            else:
-                b += 1
-            self.result.append([fraction(a, i), fraction(b, i)])
+    def _calc(self) -> None:
+        if rand1(2) == 1:
+            self.temp[0] += 1
+        else:
+            self.temp[1] += 1
         return
 
     def write(self) -> None:

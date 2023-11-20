@@ -12,16 +12,12 @@ class Birthday(Probability):
         self.f = fraction(1, 1) - fraction(factorial(self.year), self.year ** self.n * factorial(self.year - self.n))
         return
 
-    def calc(self) -> None:
-        super().calc()
-        c = 0
-        for i in range(1, self.number + 1):
-            temp = []
-            for j in range(0, self.n):
-                temp.append(rand1(self.year))
-            if find_same(temp):
-                c += 1
-            self.result.append([fraction(c, i)])
+    def _calc(self) -> None:
+        temp = []
+        for j in range(0, self.n):
+            temp.append(rand1(self.year))
+        if find_same(temp):
+            self.temp[0] += 1
         return
 
     def write(self) -> None:

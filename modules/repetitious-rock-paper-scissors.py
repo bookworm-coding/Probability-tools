@@ -8,26 +8,22 @@ class RRPS(Probability):
         self.f = fraction(1, 3) ** self.n
         return
 
-    def calc(self) -> None:
-        super().calc()
-        n1 = 0
-        for i in range(1, self.number + 1):
-            temp = True
-            for j in range(1, self.n + 1):
-                if not temp:
-                    continue
+    def _calc(self) -> None:
+        temp = True
+        for j in range(1, self.n + 1):
+            if not temp:
+                continue
+            else:
+                a, b = rand1(3), rand1(3)
+                if a == 1 and b == 3:
+                    pass
+                elif a > b:
+                    pass
                 else:
-                    a, b = rand1(3), rand1(3)
-                    if a == 1 and b == 3:
-                        pass
-                    elif a > b:
-                        pass
-                    else:
-                        temp = False
-                        continue
-            if temp:
-                n1 += 1
-            self.result.append([fraction(n1, i)])
+                    temp = False
+                    continue
+        if temp:
+            self.temp[0] += 1
         return
 
     def write(self) -> None:
