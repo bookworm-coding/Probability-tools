@@ -9,12 +9,14 @@ import plotly.graph_objs as go
 import streamlit as st
 from st_pages import add_page_title
 
+__all__ = ['Probability', 'fraction', 'rand1', 'factorial', 'find_same', 'st']
+
 
 def rand1(n: int) -> int:
     return randint(1, n)
 
 
-def fraction(numerator=0, denominator=None):
+def fraction(numerator=0, denominator=None) -> Fraction:
     return Fraction(numerator, denominator, _normalize=False)
 
 
@@ -65,7 +67,7 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 
 
 class Probability:
-    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
+    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
         add_page_title(layout="wide", initial_sidebar_state="expanded")
         st.subheader(header_text)
         self.mode = st.sidebar.radio("실험 모드를 선택하세요", ["일반 모드", "특수 모드"],
@@ -74,15 +76,12 @@ class Probability:
                                      ) == "일반 모드"
         self.number: int = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
                                      on_change=self.calc) if self.mode else 1000000
-        self.additional_slider: list = []
         self.result = []
         self.columns1 = columns1
         self.columns2 = columns2
-        self.n = None
+        self.f = None
 
-    f = None
-
-    def main(self):
+    def main(self) -> None:
         self.calc()
         if self.mode:
             self.chart_and_table()
@@ -90,12 +89,13 @@ class Probability:
             with st.spinner("로드중..."):
                 self.table()
         self.write()
+        return
 
-    def calc(self):
+    def calc(self) -> None:
         self.result = []
         return
 
-    def write(self):
+    def write(self) -> None:
         return
 
     def chart_and_table(self) -> None:
