@@ -2,8 +2,6 @@ import math
 from collections import Counter
 from fractions import Fraction
 from random import randint
-from typing import List, Any
-
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -71,9 +69,6 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 
 
 class Probability:
-
-    temp: list
-
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
         self.temp = []
         self.length = len(columns1)
@@ -96,7 +91,7 @@ class Probability:
             self.chart_and_table()
         else:
             with st.spinner("로드중..."):
-                self.table()
+                self.chart_and_table()
         self.write()
         return
 
@@ -116,18 +111,10 @@ class Probability:
         return
 
     def chart_and_table(self) -> None:
-        self.chart()
-        self.table()
-        return
-
-    def table(self) -> None:
         data = cut10(df(to_numerator(self.result), self.number, self.columns2), self.number)
         st.dataframe(
-            pd.concat([data, cut10(df(to_float(self.result), self.number, self.columns1), self.number)],
-                      axis=1))
-        return
-
-    def chart(self) -> None:
+            pd.concat([data, cut10(df(to_float(self.result), self.number, self.columns1), self.number)], axis=1)
+        )
         chart_data = df(to_float(self.result), self.number, self.columns1)
         st.plotly_chart(line(chart_data, float(self.f)), use_container_width=True)
         return
