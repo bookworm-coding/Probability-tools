@@ -1,7 +1,6 @@
 from itertools import count
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from mpl_toolkits.mplot3d import Axes3D
 from numpy import random
 
 square = plt.Rectangle((-0.5, -0.5), 1, 1, fill=False)
