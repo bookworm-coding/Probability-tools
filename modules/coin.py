@@ -4,7 +4,7 @@ from modules.format import *
 class Coin(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
         super().__init__(header_text, slider_label_text, columns1, columns2)
-        self.f = fraction(1, 2)
+        self.f = Fraction(1, 2)
 
     def _calc(self) -> None:
         if rand1(2) == 1:

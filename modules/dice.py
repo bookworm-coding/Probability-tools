@@ -4,7 +4,7 @@ from modules.format import *
 class Dice(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
         super().__init__(header_text, slider_label_text, columns1, columns2)
-        self.f = fraction(1, 6)
+        self.f = Fraction(1, 6)
         
     def _calc(self) -> None:
         r = rand1(6)

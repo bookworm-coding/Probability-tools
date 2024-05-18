@@ -9,7 +9,7 @@ class Birthday(Probability):
         else:
             self.year = 365
         self.n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=self.year, value=5, step=1, on_change=self.calc)
-        self.f = fraction(1, 1) - fraction(factorial(self.year), self.year ** self.n * factorial(self.year - self.n))
+        self.f = Fraction(1, 1) - Fraction(factorial(self.year), self.year ** self.n * factorial(self.year - self.n))
         return
 
     def _calc(self) -> None:

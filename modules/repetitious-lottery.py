@@ -7,7 +7,7 @@ class RLottery(Probability):
         self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=5, step=1, on_change=self.calc)
         self.x = st.slider(label="당첨 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
         self.y = st.slider(label="꽝 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
-        self.f = fraction(self.x, self.x + self.y) ** self.n
+        self.f = Fraction(self.x, self.x + self.y) ** self.n
         return
 
     def _calc(self) -> None:

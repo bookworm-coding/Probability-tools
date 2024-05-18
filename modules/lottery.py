@@ -6,7 +6,7 @@ class Lottery(Probability):
         super().__init__(header_text, slider_label_text, columns1, columns2)
         self.x = st.slider(label="당첨 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
         self.y = st.slider(label="꽝 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
-        self.f = fraction(self.x, self.x + self.y)
+        self.f = Fraction(self.x, self.x + self.y)
         return
 
     def _calc(self) -> None:

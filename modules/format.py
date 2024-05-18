@@ -9,15 +9,10 @@ import plotly.graph_objs as go
 import streamlit as st
 from st_pages import add_page_title
 
-__all__ = ['Probability', 'fraction', 'rand1', 'factorial', 'find_same', 'st']
+__all__ = ['Probability', 'Fraction', 'rand1', 'factorial', 'find_same', 'st']
 
 
 def rand1(n: int) -> int: return randint(1, n)
-
-
-def fraction(numerator=0, denominator=None) -> Fraction:
-    return Fraction(numerator, denominator, _normalize=False)
-
 
 def find_same(iterable) -> bool: return Counter(iterable).most_common()[0][1] != 1
 
@@ -40,7 +35,7 @@ def to_float(iter1: list[list[Fraction]]) -> list[list[float]]:
 
 
 def to_fraction(iter1: list[int], i: int) -> list[Fraction]:
-    result = map(lambda x: fraction(x, i), iter1)
+    result = map(lambda x: Fraction(x, i), iter1)
     return list(result)
 
 
@@ -74,18 +69,8 @@ class Probability:
         self.length = len(columns1)
         add_page_title(layout="wide", initial_sidebar_state="expanded")
         st.subheader(header_text)
-        self.mode = st.sidebar.radio("실험 모드를 선택하세요", ["일반모드", "준특수모드", "특수모드"],
-                                     captions=["10부터 10,000번 중 선택한 만큼 테스트합니다. 일반적인 상황에 사용합니다.",
-                                               "100,000번 테스트합니다. 중간 규모 테스트가 필요한 상황에 사용합니다. ",
-                                               "1,000,000번 테스트합니다. 대규모 테스트가 필요한 상황에 사용합니다. "]
-                                     )
-        if self.mode == "일반모드":
-            self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
-                                    on_change=self.calc)
-        elif self.mode == "준특수모드":
-            self.number = 100000
-        else:
-            self.number = 1000000
+        self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
+                                on_change=self.calc)
         self.result = []
         self.columns1 = columns1
         self.columns2 = columns2
@@ -93,11 +78,7 @@ class Probability:
 
     def main(self) -> None:
         self.calc()
-        if self.mode == "일반모드":
-            self.chart_and_table()
-        else:
-            with st.spinner("로드중..."):
-                self.chart_and_table()
+        self.chart_and_table()
         self.write()
         return
 
