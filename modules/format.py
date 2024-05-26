@@ -12,12 +12,16 @@ from st_pages import add_page_title
 __all__ = ['Probability', 'Fraction', 'rand1', 'factorial', 'find_same', 'st']
 
 
-def rand1(n: int) -> int: return randint(1, n)
+def rand1(n: int) -> int:
+    return randint(1, n)
 
-def find_same(iterable) -> bool: return Counter(iterable).most_common()[0][1] != 1
+
+def find_same(iterable) -> bool:
+    return Counter(iterable).most_common()[0][1] != 1
 
 
-def factorial(__x: int) -> int: return int(math.factorial(__x))
+def factorial(__x: int) -> int:
+    return int(math.factorial(__x))
 
 
 def cut10(data: pd.DataFrame, length: int) -> pd.DataFrame:
