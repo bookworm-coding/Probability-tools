@@ -102,10 +102,10 @@ class Probability:
         return
 
     def chart_and_table(self) -> None:
-        data = cut10(df(to_numerator(self.result), self.number, self.columns2), self.number)
-        st.dataframe(
-            pd.concat([data, cut10(df(to_float(self.result), self.number, self.columns1), self.number)], axis=1)
-        )
+        # data = cut10(df(to_numerator(self.result), self.number, self.columns2), self.number)
+        # st.dataframe(
+        #     pd.concat([data, cut10(df(to_float(self.result), self.number, self.columns1), self.number)], axis=1)
+        # )
         chart_data = df(to_float(self.result), self.number, self.columns1)
         st.plotly_chart(line(chart_data, float(self.f)), use_container_width=True)
         return
