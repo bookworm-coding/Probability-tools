@@ -4,19 +4,17 @@ from modules.format import *
 class RCoin(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
         super().__init__("반복된 동전 던지기 확률", ":material/paid:", header_text, slider_label_text, columns1, columns2)
-        self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=5, step=1, on_change=self.calc)
+        self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=2, step=1, on_change=self.calc)
         self.f = Fraction(1, 2) ** self.n
         return
 
-    def _calc(self) -> None:
-        temp = True
-        for j in range(1, self.n + 1):
-            if not temp:
-                continue
-            else:
-                temp = temp and rand1(2) == 1
-        if temp:
-            self.temp[0] += 1
+    def calc(self) -> None:
+        self.data = [0] * self.length
+        randata: list[list[int]] = rand0(2, (self.number, self.n))
+        for i in range(self.number):
+            if randata[i].count(0) == self.n:
+                self.data[0] += 1
+            self.result.append(to_fraction(self.data, i + 1))
         return
 
     def write(self) -> None:

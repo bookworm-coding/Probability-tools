@@ -4,21 +4,24 @@ from modules.format import *
 class RLottery(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
         super().__init__("반복된 추첨 확률", ":material/how_to_vote:", header_text, slider_label_text, columns1, columns2)
-        self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=5, step=1, on_change=self.calc)
+        self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=2, step=1, on_change=self.calc)
         self.x = st.slider(label="당첨 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
         self.y = st.slider(label="꽝 개수", min_value=1, max_value=10, value=5, step=1, on_change=self.calc)
         self.f = Fraction(self.x, self.x + self.y) ** self.n
         return
 
-    def _calc(self) -> None:
-        temp = True
-        for j in range(1, self.n + 1):
-            if not temp:
-                continue
-            else:
-                temp = temp and rand1(self.x + self.y) <= self.x
-        if temp:
-            self.temp[0] += 1
+    def calc(self) -> None:
+        self.data = [0] * self.length
+        randata: list[list[int]] = rand0(self.x + self.y, (self.number, self.n))
+        for i in range(self.number):
+            temp = True
+            for j in range(self.n):
+                if randata[i][j] >= self.x:
+                    temp = False
+                    break
+            if temp:
+                self.data[0] += 1
+            self.result.append(to_fraction(self.data, i + 1))
         return
 
     def write(self) -> None:

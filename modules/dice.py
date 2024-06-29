@@ -6,21 +6,8 @@ class Dice(Probability):
         super().__init__("주사위 던지기 확률", ":material/ifl:", header_text, slider_label_text, columns1, columns2)
         self.f = Fraction(1, 6)
         
-    def _calc(self) -> None:
-        r = rand1(6)
-        if r == 1:
-            self.temp[0] += 1
-        elif r == 2:
-            self.temp[1] += 1
-        elif r == 3:
-            self.temp[2] += 1
-        elif r == 4:
-            self.temp[3] += 1
-        elif r == 5:
-            self.temp[4] += 1
-        elif r == 6:
-            self.temp[5] += 1
-        return
+    def _calc(self) -> list[int]:
+        return rand0(6, self.number)
     
     def write(self) -> None:
         st.write(self.number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", float(self.result[-1][0]), "이고 ", 2, "가 나올 확률은 ",

@@ -1,23 +1,22 @@
 from modules.format import *
 
-
 class Birthday(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
         super().__init__("생일 문제 확률", ":material/calendar_month:", header_text, slider_label_text, columns1, columns2)
-        if st.sidebar.toggle("윤년 모드"):
-            self.year = 366
-        else:
-            self.year = 365
+        self.year = 365
         self.n = st.slider(label="그룹 당 사람 수", min_value=2, max_value=self.year, value=5, step=1, on_change=self.calc)
+        if st.toggle("윤년 모드"):
+            self.year = 366
         self.f = Fraction(1, 1) - Fraction(factorial(self.year), self.year ** self.n * factorial(self.year - self.n))
         return
 
-    def _calc(self) -> None:
-        temp = []
-        for j in range(0, self.n):
-            temp.append(rand1(self.year))
-        if find_same(temp):
-            self.temp[0] += 1
+    def calc(self) -> None:
+        self.data = [0] * self.length
+        randata = rand0(self.year, (self.number, self.n))
+        for i in range(self.number):
+            if find_same(randata[i]):
+                self.data[0] += 1
+            self.result.append(to_fraction(self.data, i + 1))
         return
 
     def write(self) -> None:

@@ -1,18 +1,20 @@
 import math
 from collections import Counter
 from fractions import Fraction
-from random import randint
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 import streamlit as st
+from numpy.random import Generator
+from randomgen import Xoroshiro128
 
-__all__ = ['Probability', 'Fraction', 'rand1', 'factorial', 'find_same', 'st']
+__all__ = ['Probability', 'Fraction', 'rand0', 'factorial', 'find_same', 'st', 'to_fraction']
 
 
-def rand1(n: int) -> int:
-    return randint(1, n)
+def rand0(n: int, size: int or tuple[int] = 1) -> list:
+    rg = Generator(Xoroshiro128())
+    return rg.integers(0, n, size).tolist()
 
 
 def find_same(iterable) -> bool:
@@ -69,12 +71,12 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 class Probability:
     def __init__(self, title: str, icon: str, header_text: str, slider_label_text: str, columns1: list[str],
                  columns2: list[str]) -> None:
-        self.temp = []
+        self.data = []
         self.length = len(columns1)
         st.set_page_config(page_title=title, page_icon=icon, layout="wide", initial_sidebar_state="expanded")
         st.title(title)
         st.subheader(header_text)
-        self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
+        self.number = st.slider(label=slider_label_text, min_value=100, max_value=100000, value=10000, step=100,
                                 on_change=self.calc)
         self.result = []
         self.columns1 = columns1
@@ -88,16 +90,15 @@ class Probability:
         return
 
     def calc(self) -> None:
-        self.temp = []
-        for i in range(self.length):
-            self.temp.append(0)
-        for i in range(1, self.number + 1):
-            self._calc()
-            self.result.append(to_fraction(self.temp, i))
+        self.data = [0] * self.length
+        randata: list[int] = self._calc()
+        for i in range(self.number):
+            self.data[randata[i]] += 1
+            self.result.append(to_fraction(self.data, i + 1))
         return
 
-    def _calc(self) -> None:
-        return
+    def _calc(self) -> list[int]:
+        pass
 
     def write(self) -> None:
         return

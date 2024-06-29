@@ -9,9 +9,13 @@ class Lottery(Probability):
         self.f = Fraction(self.x, self.x + self.y)
         return
 
-    def _calc(self) -> None:
-        if rand1(self.x + self.y) <= self.x:
-            self.temp[0] += 1
+    def calc(self) -> None:
+        self.data = [0] * self.length
+        randata: list[int] = rand0(self.x + self.y, self.number)
+        for i in range(self.number):
+            if randata[i] < self.x:
+                self.data[0] += 1
+            self.result.append(to_fraction(self.data, i + 1))
         return
 
     def write(self) -> None:

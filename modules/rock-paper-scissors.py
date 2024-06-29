@@ -6,19 +6,8 @@ class RPS(Probability):
         super().__init__("가위바위보 확률", ":material/eda:", header_text, slider_label_text, columns1, columns2)
         self.f = Fraction(1, 3)
 
-    def _calc(self) -> None:
-        a, b = rand1(3), rand1(3)
-        if a == b:
-            self.temp[1] += 1
-        elif a == 3 and b == 1:
-            self.temp[2] += 1
-        elif a == 1 and b == 3:
-            self.temp[0] += 1
-        elif a > b:
-            self.temp[0] += 1
-        else:
-            self.temp[2] += 1
-        return
+    def _calc(self) -> list[int]:
+        return rand0(3, self.number)
 
     def write(self) -> None:
         st.write("A와 B가 ", self.number, "번 가위바위보를 했을 때 A가 이기는 확률은 ", float(self.result[-1][0]), "이고 A와 B가 비기는 확률은 ",
