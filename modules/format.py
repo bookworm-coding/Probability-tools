@@ -74,7 +74,7 @@ class Probability:
         st.set_page_config(page_title=title, page_icon=icon, layout="wide", initial_sidebar_state="expanded")
         st.title(title)
         st.subheader(header_text)
-        self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
+        self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=5000, step=10,
                                 on_change=self.calc)
         self.result = []
         self.columns1 = columns1
