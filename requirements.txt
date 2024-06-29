@@ -1,6 +1,5 @@
 openpyxl
-st-pages==0.4.1
-streamlit
+streamlit==1.36.0
 pandas
 numpy
 plotly

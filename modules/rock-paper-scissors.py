@@ -3,7 +3,7 @@ from modules.format import *
 
 class RPS(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]):
-        super().__init__(header_text, slider_label_text, columns1, columns2)
+        super().__init__("가위바위보 확률", ":material/eda:", header_text, slider_label_text, columns1, columns2)
         self.f = Fraction(1, 3)
 
     def _calc(self) -> None:

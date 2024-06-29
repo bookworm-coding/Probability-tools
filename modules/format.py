@@ -7,7 +7,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 import streamlit as st
-from st_pages import add_page_title
 
 __all__ = ['Probability', 'Fraction', 'rand1', 'factorial', 'find_same', 'st']
 
@@ -68,10 +67,12 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 
 
 class Probability:
-    def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
+    def __init__(self, title: str, icon: str, header_text: str, slider_label_text: str, columns1: list[str],
+                 columns2: list[str]) -> None:
         self.temp = []
         self.length = len(columns1)
-        add_page_title(layout="wide", initial_sidebar_state="expanded")
+        st.set_page_config(page_title=title, page_icon=icon, layout="wide", initial_sidebar_state="expanded")
+        st.title(title)
         st.subheader(header_text)
         self.number = st.slider(label=slider_label_text, min_value=10, max_value=10000, value=100, step=10,
                                 on_change=self.calc)
@@ -102,10 +103,6 @@ class Probability:
         return
 
     def chart_and_table(self) -> None:
-        # data = cut10(df(to_numerator(self.result), self.number, self.columns2), self.number)
-        # st.dataframe(
-        #     pd.concat([data, cut10(df(to_float(self.result), self.number, self.columns1), self.number)], axis=1)
-        # )
         chart_data = df(to_float(self.result), self.number, self.columns1)
         st.plotly_chart(line(chart_data, float(self.f)), use_container_width=True)
         return

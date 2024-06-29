@@ -1,14 +1,13 @@
 import pandas as pd
 import streamlit as st
-from st_pages import add_page_title
 from io import BytesIO
 
-add_page_title(layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="제로게임 모든 경우 나열", layout="wide", initial_sidebar_state="expanded")
+st.title("제로게임 모든 경우 나열")
 
 st.subheader("제로게임에서 각 숫자를 불렀을 때 이를 만족하는 모든 경우를 나열")
 
 
-@st.cache_resource
 class Zero(pd.DataFrame):
     n = 0
     l = []
@@ -18,7 +17,7 @@ class Zero(pd.DataFrame):
         for i in range(2 * self.n + 1):
             self.l.append([])
         self.zero([])
-        super().__init__(data=self.l, columns=range(1, len(self.l[self.n*-1-1])+1))
+        super().__init__(data=self.l, columns=range(1, len(self.l[self.n * -1 - 1]) + 1))
         return
 
     def zero(self, a: list) -> None:
@@ -44,4 +43,4 @@ with st.spinner("로딩 중..."):
     f = BytesIO()
     z.to_excel(f)
     st.download_button("표 다운로드", f, file_name="제로게임 경우의 수.xlsx",
-                   mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                       mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")

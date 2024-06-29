@@ -3,7 +3,7 @@ from modules.format import *
 
 class Birthday(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
-        super().__init__(header_text, slider_label_text, columns1, columns2)
+        super().__init__("생일 문제 확률", ":material/calendar_month:", header_text, slider_label_text, columns1, columns2)
         if st.sidebar.toggle("윤년 모드"):
             self.year = 366
         else:

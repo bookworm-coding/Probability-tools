@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
-from st_pages import add_page_title
 
-add_page_title(layout="wide", initial_sidebar_state="expanded")
+st.set_page_config(page_title="제로게임 경우의 수", layout="wide", initial_sidebar_state="expanded")
+st.title("제로게임 경우의 수")
 
 df = None
 

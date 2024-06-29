@@ -3,7 +3,7 @@ from modules.format import *
 
 class RRPS(Probability):
     def __init__(self, header_text: str, slider_label_text: str, columns1: list[str], columns2: list[str]) -> None:
-        super().__init__(header_text, slider_label_text, columns1, columns2)
+        super().__init__("반복된 가위바위보 확률", ":material/eda:", header_text, slider_label_text, columns1, columns2)
         self.n = st.slider(label="연속 횟수", min_value=2, max_value=10, value=5, step=1, on_change=self.calc)
         self.f = Fraction(1, 3) ** self.n
         return
