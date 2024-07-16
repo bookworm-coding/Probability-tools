@@ -6,15 +6,19 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 import streamlit as st
-from numpy.random import Generator
+from numpy.random import Generator, randint
 from randomgen import Xoroshiro128
 
 __all__ = ['Probability', 'Fraction', 'rand0', 'factorial', 'find_same', 'st', 'to_fraction']
 
 
 def rand0(n: int, size: int or tuple[int] = 1) -> list:
-    rg = Generator(Xoroshiro128())
-    return rg.integers(0, n, size).tolist()
+    try:
+        rg = Generator(Xoroshiro128())
+        result = rg.integers(0, n, size).tolist()
+    except:
+        result = randint(0,n,size).tolist()
+    return result
 
 
 def find_same(iterable) -> bool:
