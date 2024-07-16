@@ -70,7 +70,7 @@ def df(p_object, length: int, columns=None) -> pd.DataFrame:
 
 class Probability:
     def __init__(self, title: str, icon: str, header_text: str, slider_label_text: str, columns1: list[str],
-                 columns2: list[str]) -> None:
+                 columns2: list[str]):
         self.data = []
         self.length = len(columns1)
         st.set_page_config(page_title=title, page_icon=icon, layout="wide", initial_sidebar_state="expanded")
@@ -83,27 +83,24 @@ class Probability:
         self.columns2 = columns2
         self.f = None
 
-    def main(self) -> None:
+    def main(self):
         self.calc()
         self.chart_and_table()
         self.write()
-        return
 
-    def calc(self) -> None:
+    def calc(self):
         self.data = [0] * self.length
         randata: list[int] = self._calc()
         for i in range(self.number):
             self.data[randata[i]] += 1
             self.result.append(to_fraction(self.data, i + 1))
-        return
 
     def _calc(self) -> list[int]:
         pass
 
-    def write(self) -> None:
-        return
+    def write(self):
+        pass
 
-    def chart_and_table(self) -> None:
+    def chart_and_table(self):
         chart_data = df(to_float(self.result), self.number, self.columns1)
         st.plotly_chart(line(chart_data, float(self.f)), use_container_width=True)
-        return

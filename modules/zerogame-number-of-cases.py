@@ -7,7 +7,7 @@ st.title("제로게임 경우의 수")
 df = None
 
 
-def zero() -> None:
+def zero():
     global n, df
     result = []
     for i in range(0, n):
@@ -27,7 +27,6 @@ def zero() -> None:
                 else:
                     result[i].append(result[i - 1][j - 2] + result[i - 1][j - 1] + result[i - 1][j])
     df = pd.DataFrame(result, index=range(1, n + 1))
-    return
 
 
 st.subheader("제로게임에서 각 숫자를 불렀을 때의 경우의 수")

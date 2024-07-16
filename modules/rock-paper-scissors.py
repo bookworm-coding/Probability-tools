@@ -9,12 +9,11 @@ class RPS(Probability):
     def _calc(self) -> list[int]:
         return rand0(3, self.number)
 
-    def write(self) -> None:
+    def write(self):
         st.write("A와 B가 ", self.number, "번 가위바위보를 했을 때 A가 이기는 확률은 ", float(self.result[-1][0]), "이고 A와 B가 비기는 확률은 ",
                  float(self.result[-1][1]),
                  "이고 A가 지는 확률은 ", float(self.result[-1][2]), "이다. ")
         st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (self.f.numerator, self.f.denominator), "≈", float(self.f), "이다. ")
-        return
 
 
 RPS(

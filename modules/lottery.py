@@ -9,7 +9,7 @@ class Lottery(Probability):
         self.f = Fraction(self.x, self.x + self.y)
         return
 
-    def calc(self) -> None:
+    def calc(self):
         self.data = [0] * self.length
         randata: list[int] = rand0(self.x + self.y, self.number)
         for i in range(self.number):
@@ -18,7 +18,7 @@ class Lottery(Probability):
             self.result.append(to_fraction(self.data, i + 1))
         return
 
-    def write(self) -> None:
+    def write(self):
         st.write(self.number, "번 추첨했을 때 당첨이 나올 확률은 ", float(self.result[-1][0]), "이다.")
         st.write("이론상 확률은  ", "$\\frac{%d}{%d}$" % (self.f.numerator, self.f.denominator), "=", float(self.f), "이다. ")
         return

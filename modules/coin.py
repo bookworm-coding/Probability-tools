@@ -9,12 +9,11 @@ class Coin(Probability):
     def _calc(self) -> list[int]:
         return rand0(2, self.number)
 
-    def write(self) -> None:
+    def write(self):
         st.write(self.number, "번 동전을 던졌을 때 앞면이 나올 확률은 ", float(self.result[-1][0]), "이고 뒷면이 나올 확률은",
                  float(self.result[-1][1]), "이다.")
         st.write("이론상 확률은 앞면, 뒷면 모두 ", "$\\frac{%d}{%d}$" % (self.f.numerator, self.f.denominator), "=", float(self.f),
                  "이다. ")
-        return
 
 
 Coin(

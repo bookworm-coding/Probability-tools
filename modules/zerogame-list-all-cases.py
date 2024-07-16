@@ -9,18 +9,14 @@ st.subheader("제로게임에서 각 숫자를 불렀을 때 이를 만족하는
 
 
 class Zero(pd.DataFrame):
-    n = 0
-    l = []
-
-    def __init__(self, n: int) -> None:
-        self.n = n
+    def __init__(self, number: int):
+        self.n = number
         for i in range(2 * self.n + 1):
             self.l.append([])
         self.zero([])
         super().__init__(data=self.l, columns=range(1, len(self.l[self.n * -1 - 1]) + 1))
-        return
 
-    def zero(self, a: list) -> None:
+    def zero(self, a: list):
         if len(a) == self.n:
             s = 0
             for i in a:
@@ -30,7 +26,6 @@ class Zero(pd.DataFrame):
             self.zero(a + [0])
             self.zero(a + [1])
             self.zero(a + [2])
-        return
 
 
 n = st.slider("인원수", min_value=1, max_value=10, value=2, step=1)

@@ -9,13 +9,12 @@ class Dice(Probability):
     def _calc(self) -> list[int]:
         return rand0(6, self.number)
     
-    def write(self) -> None:
+    def write(self):
         st.write(self.number, "번 주사위를 던졌을 때 ", 1, "이 나올 확률은 ", float(self.result[-1][0]), "이고 ", 2, "가 나올 확률은 ",
                  float(self.result[-1][1]), "이고 ", 3, "이 나올 확률은 ", float(self.result[-1][2]), "이고 ", 4, "가 나올 확률은 ",
                  float(self.result[-1][3]), "이고 ", 5, "가 나올 확률은 ", float(self.result[-1][4]), "이고 ", 6, "이 나올 확률은 ",
                  float(self.result[-1][5]), "이다.")
         st.write("이론상 확률은 모두 ", "$\\frac{%d}{%d}$" % (self.f.numerator, self.f.denominator), "≈", float(self.f), "이다. ")
-        return
         
     
 Dice(
