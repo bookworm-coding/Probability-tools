@@ -13,11 +13,8 @@ __all__ = ['Probability', 'Fraction', 'rand0', 'factorial', 'find_same', 'st', '
 
 
 def rand0(n: int, size: int or tuple[int] = 1) -> list:
-    try:
-        rg = Generator(Xoroshiro128())
-        result = rg.integers(0, n, size).tolist()
-    except:
-        result = randint(0,n,size).tolist()
+    rg = Generator(Xoroshiro128())
+    result = rg.integers(0, n, size).tolist()
     return result
 
 
