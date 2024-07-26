@@ -1,12 +1,12 @@
 import streamlit as st
 
 def homepage():
-    st.set_page_config(page_title="홈", page_icon=":material/home:")
-    st.header("확률 도구")
-    st.subheader("다양한 확률 그래프 등을 제공합니다.")
-    st.write("[데스크탑 버전 다운로드](https://github.com/bookworm-coding/Probability-tools-desktop/releases)")
-    st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability-tools)")
-    st.write("[데스크탑 버전 Github 주소](https://github.com/bookworm-coding/Probability-tools-desktop)")
+	st.set_page_config(page_title="홈", page_icon=":material/home:")
+	st.header("확률 도구")
+	st.subheader("다양한 확률 그래프 등을 제공합니다.")
+	st.write("[데스크탑 버전 다운로드](https://github.com/bookworm-coding/Probability-tools-desktop/releases)")
+	st.write("[소스 코드 Github 주소](https://github.com/bookworm-coding/Probability-tools)")
+	st.write("[데스크탑 버전 Github 주소](https://github.com/bookworm-coding/Probability-tools-desktop)")
 
 
 home = st.Page(homepage, title="홈", icon=":material/home:", default=True)
@@ -27,11 +27,11 @@ rlottery = st.Page("modules/repetitious-lottery.py", title="반복된 추첨 확
 b = st.Page("modules/birthday.py", title="생일 문제 확률", icon=":material/calendar_month:")
 
 st.navigation(
-    {
-        "홈": [home],
-        "경우의 수 문제": [zlac, znoc],
-        "단순한 확률 문제": [coin, rps, dice, lottery],
-        "반복된 확률 문제": [rcoin, rrps, rdice, rlottery],
-        "복잡한 확률 문제": [b],
-    }
+	{
+		"홈": [home],
+		"경우의 수 문제": [zlac, znoc],
+		"단순한 확률 문제": [coin, rps, dice, lottery],
+		"반복된 확률 문제": [rcoin, rrps, rdice, rlottery],
+		"복잡한 확률 문제": [b],
+	}
 ).run()

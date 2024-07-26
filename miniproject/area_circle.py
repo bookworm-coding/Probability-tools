@@ -17,15 +17,15 @@ next(index)
 
 
 def animate(*args, **kwargs):
-    num = next(index)
-    global x
-    if num == 10000:
-        ani.event_source.stop()
-    k = random.uniform(low=-1, high=1, size=2)
-    if k[0] ** 2 + k[1] ** 2 <= 1:
-        x += 1
-    print(x / num * 4)
-    ax.scatter(k[0], k[1], s=1, c='black')
+	num = next(index)
+	global x
+	if num == 10000:
+		ani.event_source.stop()
+	k = random.uniform(low=-1, high=1, size=2)
+	if k[0] ** 2 + k[1] ** 2 <= 1:
+		x += 1
+	print(x / num * 4)
+	ax.scatter(k[0], k[1], s=1, c='black')
 
 
 ani = FuncAnimation(plt.gcf(), animate, interval=0)
