@@ -1,7 +1,7 @@
 openpyxl
 streamlit
 pandas
-numpy<2
+numpy
 plotly
 scipy
 matplotlib
